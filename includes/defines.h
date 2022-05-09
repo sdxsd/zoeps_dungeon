@@ -24,3 +24,14 @@ The definition of Free Software is as follows:
 A program is free software if users have all of these freedoms.
 */
 
+/* Defines a number of useful constants. */
+
+#ifndef DEFINES_H
+# define DEFINES_H
+
+# define TRUE 1
+# define FALSE 0
+# define EXIT_FAILURE -1
+# define FILE_LIMIT 128
+
+#endif

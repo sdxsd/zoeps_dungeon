@@ -24,3 +24,10 @@ The definition of Free Software is as follows:
 A program is free software if users have all of these freedoms.
 */
 
+#ifndef SYSTEM_KILLER_H
+# define SYSTEM_KILLER_H
+# include "defines.h"
+
+
+
+#endif // SYSTEM_KILLER_H
