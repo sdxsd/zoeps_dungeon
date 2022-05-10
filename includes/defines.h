@@ -41,4 +41,7 @@ A program is free software if users have all of these freedoms.
 /* Texture defaults */
 # define TEX_SIZE 128
 
+# define WIN_X 640
+# define WIN_Y 512
+
 #endif
