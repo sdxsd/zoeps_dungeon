@@ -27,6 +27,7 @@ A program is free software if users have all of these freedoms.
 #ifndef SYSTEM_KILLER_H
 # define SYSTEM_KILLER_H
 # include "defines.h"
+# include "structs.h"
 
 /* UTIL FUNCTIONS */
 char **split(char const *s, char c);

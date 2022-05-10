@@ -27,9 +27,18 @@ A program is free software if users have all of these freedoms.
 #ifndef STRUCTS_H
 # define STRUCTS_H
 # include "defines.h"
+# include <raylib.h>
+
+typedef struct img_data {
+	Image	plyr;
+	Image	flr;
+	Image	wll;
+} image_data;
 
 typedef struct t_data {
-
+	Texture2D	plyr;
+	Texture2D	flr;
+	Texture2D	wll;
 } texture_data;
 
 typedef struct	i_data {
@@ -52,12 +61,13 @@ typedef struct p_data {
 } plyr_data;
 
 typedef struct g_data {
-	int			screen_length;
-	int			screen_height;
-	int			lvl_count;
-	char		**lvl_names;
-	char		**file_names;
-	plyr_data	plyr;
+	int				screen_length;
+	int				screen_height;
+	int				lvl_count;
+	char			**lvl_names;
+	char			**file_names;
+	image_data		images;
+	plyr_data		plyr;
 } game_data;
 
 typedef struct e_data {

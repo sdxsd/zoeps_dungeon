@@ -38,4 +38,7 @@ A program is free software if users have all of these freedoms.
 # define DEFAULT_HP 25;
 # define DEFAULT_DMG 5;
 
+/* Texture defaults */
+# define TEX_SIZE 128
+
 #endif
