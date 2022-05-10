@@ -40,8 +40,10 @@ int	algemeen_init(game_data *game) {
 	game->textures.wll = LoadTextureFromImage(game->images.wll);
 	while(!WindowShouldClose()) {
 		BeginDrawing();
-			ClearBackground(WHITE);
+			ClearBackground(BLACK);
 			DrawTexture(game->textures.plyr, WIN_X / 2, WIN_Y / 2, WHITE);
+			DrawTexture(game->textures.wll, 0, 0, WHITE);
+			DrawTexture(game->textures.flr, WIN_X - 128, WIN_Y - 128, WHITE);
 		EndDrawing();
 	}
 	return (TRUE);
