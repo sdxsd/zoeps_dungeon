@@ -25,6 +25,7 @@ A program is free software if users have all of these freedoms.
 */
 
 #include <stdlib.h>
+#include <raylib.h>
 #include "../includes/system-killer.h"
 
 static char	**init_map(int x, int y)
@@ -37,4 +38,13 @@ static char	**init_map(int x, int y)
 		if (!(map[i] = malloc(sizeof(char) * x)))
 			return (NULL);
 	return (map);
+}
+
+char	**map_generate(char	**map, int x, int y)
+{
+	int	point_x;
+	int	point_y;
+
+	point_x = GetRandomValue(0, x);
+	point_y = GetRandomValue(0, y);
 }
