@@ -24,18 +24,32 @@ The definition of Free Software is as follows:
 A program is free software if users have all of these freedoms.
 */
 
-/* Defines a number of useful constants. */
+#ifndef STRUCTS_H
+# define STRUCTS_H
+# include "defines.h"
 
-#ifndef DEFINES_H
-# define DEFINES_H
+typedef struct p_data {
+	int		lvl;
+	short	health;
+	short	dmg;
+	char	*name;
+} plyr_data;
 
-# define TRUE 1
-# define FALSE 0
-# define FILE_LIMIT 128
+typedef struct g_data {
+	int		lvl_count;
+	char	**lvl_names;
+	char	**file_names;
+} game_data;
 
-/* Player defaults. */
-# define INV_SIZE 6;
-# define DEFAULT_HP 25;
-# define DEFAULT_DMG 5;
+typedef struct	i_data {
+	int		class;
+	char	*description;
+	void	(*f)(game_data *);
+} item;
 
-#endif
+typedef struct p_inv_data {
+	int		gold;
+	item	*items[];
+} plyr_inv;
+
+#endif // STRUCTS_H
