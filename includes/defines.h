@@ -31,7 +31,6 @@ A program is free software if users have all of these freedoms.
 
 # define TRUE 1
 # define FALSE 0
-# define EXIT_FAILURE -1
 # define FILE_LIMIT 128
 
 #endif
