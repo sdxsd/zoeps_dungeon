@@ -4,19 +4,16 @@
 #include <stdio.h>
 #include "../includes/system-killer.h"
 
-/* Check for -1 later... */
-int	level_count(char *env[]) {
+/* Check for NULL later... */
+char	**level_array() {
 	char	*pwd;
-	int		level_c;
+	char	**lvl_array;
 
 	pwd = getenv("PWD");
-	if (!pwd)
-		return (-1);
-	level_c = 0;
-	for (int i = 0; pwd[i]; i++)
-		if (pwd[i] == '/')
-			level_c++;
-	return (level_c);
+	if (!pwd) return (NULL);
+	lvl_array = split(pwd, '/');
+	if (!lvl_array) return NULL;
+	return (lvl_array);
 }
 
 char	**file_name_array(char *dir_name) {
@@ -26,8 +23,7 @@ char	**file_name_array(char *dir_name) {
 	char			**file_names;
 
 	file_names = malloc(sizeof(char *) * FILE_LIMIT);
-	if (!file_names)
-		return (NULL);
+	if (!file_names) return (NULL);
 	dir = opendir(dir_name);
 	for (file_num = 0; file_num < FILE_LIMIT; file_num++) {
 		ent = readdir(dir);
