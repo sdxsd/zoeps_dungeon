@@ -36,6 +36,9 @@ char **split(char const *s, char c);
 char **level_array();
 char **file_name_array(char *dir_name);
 
+/* TEXTURE FUNCTIONS */
+int	load_textures(game_data *game);
+
 /* RENDERING FUNCTIONS  */
 int	algemeen_init(game_data *game);
 

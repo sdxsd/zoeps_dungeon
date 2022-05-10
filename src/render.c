@@ -34,4 +34,15 @@ A program is free software if users have all of these freedoms.
 
 int	algemeen_init(game_data *game) {
 	InitWindow(WIN_X, WIN_Y, "System Killer!");
+	load_textures(game);
+	game->textures.plyr = LoadTextureFromImage(game->images.plyr);
+	game->textures.flr = LoadTextureFromImage(game->images.flr);
+	game->textures.wll = LoadTextureFromImage(game->images.wll);
+	while(!WindowShouldClose()) {
+		BeginDrawing();
+			ClearBackground(WHITE);
+			DrawTexture(game->textures.plyr, WIN_X / 2, WIN_Y / 2, WHITE);
+		EndDrawing();
+	}
+	return (TRUE);
 }

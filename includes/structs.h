@@ -67,6 +67,7 @@ typedef struct g_data {
 	char			**lvl_names;
 	char			**file_names;
 	image_data		images;
+	texture_data	textures;
 	plyr_data		plyr;
 } game_data;
 
