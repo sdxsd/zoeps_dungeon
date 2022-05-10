@@ -27,8 +27,27 @@ A program is free software if users have all of these freedoms.
 #include <stdlib.h>
 #include <raylib.h>
 #include <stdio.h>
-#include <time.h>
+#include <fcntl.h>
+#include <unistd.h>
 #include "../includes/system-killer.h"
+
+int	get_random(int min, int max) {
+	int	fd;
+	int	*num;
+	int	ret;
+
+	num = malloc(sizeof(int));
+	if (!num)
+		return (-1);
+	fd = open("/dev/urandom", O_RDONLY);
+	read(fd, num, 4);
+	ret = (*num % (min - max) + min);
+	if (ret < 0)
+		ret = -ret;
+	free(num);
+	close(fd);
+	return (ret);
+}
 
 char	**init_map(int x, int y) {
 	char	**map;
@@ -52,27 +71,30 @@ char	**map_generate(char	**map, int x, int y) {
 	int	i;
 
 	iterations = 0;
-	SetRandomSeed(time(NULL));
-	point_x = GetRandomValue(0, x);
-	point_y = GetRandomValue(0, y);
-	map[point_y][point_x] = '0';
+	point_x = get_random(0, x);
+	point_y = get_random(0, y);
+	map[point_y][point_x] = 'X';
 	while(iterations < MAP_GEN_ITERATIONS * 5) {
-		switch (i = GetRandomValue(1,4)) {
+		switch (i = get_random(1,4)) {
 			case 1:
-				point_x++;
+				if (!point_x + 1 >= x)
+					point_x++;
 			case 2:
-				point_y++;
+				if (!point_y + 1 >= y)
+					point_y++;
 			case 3:
-				point_x--;
+				if (!point_x - 1 < 0)
+					point_x--;
 			case 4:
-				point_y--;
+				if (!point_y - 1 < 0)
+					point_y--;
 		}
-		if (point_x > x || point_y > y
-			|| point_x < 0 || point_y < 0)
+		if (map[point_y][point_x] == 0)
 			;
-		else
-			map[point_y][point_x] = '0';
-		iterations++;
+		else {
+				map[point_y][point_x] = '0';
+				iterations++;
+		}
 	}
 	for (int i = 0; i <= y; i++)
 		printf("%s\n", map[i]);
