@@ -2,6 +2,8 @@ CC = gcc
 CFLAGS = -g -lraylib
 NAME = system-killer
 CFILES = \
+		src/render.c \
+		src/textures.c \
 		src/files.c \
 		src/split.c \
 		src/main.c

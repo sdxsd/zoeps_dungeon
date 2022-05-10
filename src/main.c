@@ -30,6 +30,9 @@ A program is free software if users have all of these freedoms.
 #include "../includes/system-killer.h"
 
 int main() {
-
+	game_data	game;
+	game.lvl_names = level_array();
+	game.file_names = file_name_array(getenv("PWD"));
+	if (!algemeen_init(&game)) return (EXIT_FAILURE);
 	return (0);
 }

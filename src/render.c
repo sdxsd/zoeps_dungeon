@@ -27,12 +27,11 @@ A program is free software if users have all of these freedoms.
 #include <raylib.h>
 #include "../includes/system-killer.h"
 
-int	rndr_loop()
-{
+/* int	rndr_loop() */
+/* { */
 
-}
+/* } */
 
-int	algemeen_init()
-{
-
+int	algemeen_init(game_data *game) {
+	InitWindow(WIN_X, WIN_Y, "System Killer!");
 }

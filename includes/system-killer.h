@@ -37,6 +37,6 @@ char **level_array();
 char **file_name_array(char *dir_name);
 
 /* RENDERING FUNCTIONS  */
-
+int	algemeen_init(game_data *game);
 
 #endif // SYSTEM_KILLER_H
