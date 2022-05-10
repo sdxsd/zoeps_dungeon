@@ -32,10 +32,10 @@ static char	**init_map(int x, int y)
 {
 	char	**map;
 
-	map = malloc(sizeof(char*) * y + 1);
+	map = calloc(sizeof(char*) * y, 1);
 	if (!map) return (NULL);
 	for (int i = 0; i < y; i++)
-		if (!(map[i] = malloc(sizeof(char) * x)))
+		if (!(map[i] = calloc(sizeof(char), x)))
 			return (NULL);
 	return (map);
 }
@@ -47,4 +47,5 @@ char	**map_generate(char	**map, int x, int y)
 
 	point_x = GetRandomValue(0, x);
 	point_y = GetRandomValue(0, y);
+	map[point_x][point_y] = '0';
 }
