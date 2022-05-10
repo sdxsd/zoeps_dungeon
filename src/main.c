@@ -29,17 +29,7 @@ A program is free software if users have all of these freedoms.
 #include <stdio.h>
 #include "../includes/system-killer.h"
 
-int main(int argc, char *argv[]) {
-	char	**lvl_array;
-	char	**files;
+int main() {
 
-	lvl_array = level_array();
-	putchar('/');
-	for(int i = 0; lvl_array[i]; i++)
-		printf("%s/", lvl_array[i]);
-	putchar('\n');
-	files = file_name_array(getenv("PWD"));
-	for(int i = 0; files[i]; i++)
-		printf("%s\n", files[i]);
 	return (0);
 }

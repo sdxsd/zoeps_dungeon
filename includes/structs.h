@@ -28,28 +28,36 @@ A program is free software if users have all of these freedoms.
 # define STRUCTS_H
 # include "defines.h"
 
-typedef struct p_data {
-	int		lvl;
-	short	health;
-	short	dmg;
-	char	*name;
-} plyr_data;
-
-typedef struct g_data {
-	int		lvl_count;
-	char	**lvl_names;
-	char	**file_names;
-} game_data;
 
 typedef struct	i_data {
-	int		class;
 	char	*description;
-	void	(*f)(game_data *);
+	int		class;
+	int		effect;
 } item;
 
 typedef struct p_inv_data {
 	int		gold;
 	item	*items[];
 } plyr_inv;
+
+typedef struct p_data {
+	short		lvl;
+	short		health;
+	short		dmg;
+	char		*name;
+	plyr_inv	inventory;
+} plyr_data;
+
+typedef struct g_data {
+	int			lvl_count;
+	char		**lvl_names;
+	char		**file_names;
+	plyr_data	plyr;
+} game_data;
+
+typedef struct e_data {
+	char	*description;
+	void	(*f)(game_data *);
+} effect;
 
 #endif // STRUCTS_H
