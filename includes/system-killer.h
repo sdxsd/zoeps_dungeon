@@ -42,4 +42,8 @@ int	load_textures(game_data *game);
 /* RENDERING FUNCTIONS  */
 int	algemeen_init(game_data *game);
 
+/* MAP FUNCTIONS */
+char	**map_generate(char	**map, int x, int y);
+char	**init_map(int x, int y);
+
 #endif // SYSTEM_KILLER_H

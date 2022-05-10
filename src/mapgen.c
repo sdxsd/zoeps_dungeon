@@ -26,26 +26,55 @@ A program is free software if users have all of these freedoms.
 
 #include <stdlib.h>
 #include <raylib.h>
+#include <stdio.h>
+#include <time.h>
 #include "../includes/system-killer.h"
 
-static char	**init_map(int x, int y)
-{
+char	**init_map(int x, int y) {
 	char	**map;
 
 	map = calloc(sizeof(char*) * y, 1);
 	if (!map) return (NULL);
-	for (int i = 0; i < y; i++)
+	for (int i = 0; i <= y; i++)
 		if (!(map[i] = calloc(sizeof(char), x)))
 			return (NULL);
+	for (int i = 0; i <= y; i++)
+		for (int z = 0; z <= x; z++)
+			map[i][z] = '1';
 	return (map);
 }
 
-char	**map_generate(char	**map, int x, int y)
-{
+/* Drunkard walk algorithm. */
+char	**map_generate(char	**map, int x, int y) {
 	int	point_x;
 	int	point_y;
+	int	iterations;
+	int	i;
 
+	iterations = 0;
+	SetRandomSeed(time(NULL));
 	point_x = GetRandomValue(0, x);
 	point_y = GetRandomValue(0, y);
-	map[point_x][point_y] = '0';
+	map[point_y][point_x] = '0';
+	while(iterations < MAP_GEN_ITERATIONS * 5) {
+		switch (i = GetRandomValue(1,4)) {
+			case 1:
+				point_x++;
+			case 2:
+				point_y++;
+			case 3:
+				point_x--;
+			case 4:
+				point_y--;
+		}
+		if (point_x > x || point_y > y
+			|| point_x < 0 || point_y < 0)
+			;
+		else
+			map[point_y][point_x] = '0';
+		iterations++;
+	}
+	for (int i = 0; i <= y; i++)
+		printf("%s\n", map[i]);
+	return (map);
 }

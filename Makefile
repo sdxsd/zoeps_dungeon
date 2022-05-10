@@ -6,6 +6,7 @@ CFILES = \
 		src/textures.c \
 		src/files.c \
 		src/split.c \
+		src/mapgen.c \
 		src/main.c
 OFILES = $(CFILES:.c=.o)
 

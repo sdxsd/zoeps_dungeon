@@ -41,7 +41,11 @@ A program is free software if users have all of these freedoms.
 /* Texture defaults */
 # define TEX_SIZE 128
 
+/* WINDOW DEFAULTS */
 # define WIN_X 640
 # define WIN_Y 512
+
+/* MAP GEN DEFAULTS */
+# define MAP_GEN_ITERATIONS 128
 
 #endif
