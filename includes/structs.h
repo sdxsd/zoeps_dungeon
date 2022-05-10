@@ -28,6 +28,9 @@ A program is free software if users have all of these freedoms.
 # define STRUCTS_H
 # include "defines.h"
 
+typedef struct t_data {
+
+} texture_data;
 
 typedef struct	i_data {
 	char	*description;
@@ -49,6 +52,8 @@ typedef struct p_data {
 } plyr_data;
 
 typedef struct g_data {
+	int			screen_length;
+	int			screen_height;
 	int			lvl_count;
 	char		**lvl_names;
 	char		**file_names;

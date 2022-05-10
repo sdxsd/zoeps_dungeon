@@ -24,18 +24,15 @@ The definition of Free Software is as follows:
 A program is free software if users have all of these freedoms.
 */
 
-#ifndef SYSTEM_KILLER_H
-# define SYSTEM_KILLER_H
-# include "defines.h"
+#include <raylib.h>
+#include "../includes/system-killer.h"
 
-/* UTIL FUNCTIONS */
-char **split(char const *s, char c);
+int	rndr_loop()
+{
 
-/* FILE FUNCTIONS */
-char **level_array();
-char **file_name_array(char *dir_name);
+}
 
-/* RENDERING FUNCTIONS  */
+int	algemeen_init()
+{
 
-
-#endif // SYSTEM_KILLER_H
+}
