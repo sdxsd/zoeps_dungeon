@@ -30,11 +30,11 @@ A program is free software if users have all of these freedoms.
 #include "../includes/system-killer.h"
 
 int main() {
-	char	**map;
+	char		**map;
 	game_data	game;
 
-	map = init_map(10, 10);
-	map = map_generate(map, 10, 10);
+	map = init_map(DEFAULT_MAP_SIZE_X, DEFAULT_MAP_SIZE_Y);
+	map = map_generate(map, DEFAULT_MAP_SIZE_X, DEFAULT_MAP_SIZE_Y);
 	/* game.lvl_names = level_array(); */
 	/* game.file_names = file_name_array(getenv("PWD")); */
 	/* if (!algemeen_init(&game)) return (EXIT_FAILURE); */

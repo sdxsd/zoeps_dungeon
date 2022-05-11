@@ -46,6 +46,8 @@ A program is free software if users have all of these freedoms.
 # define WIN_Y 512
 
 /* MAP GEN DEFAULTS */
-# define MAP_GEN_ITERATIONS 128
+# define DEFAULT_FLOOR_TILES 128
+# define DEFAULT_MAP_SIZE_X 20
+# define DEFAULT_MAP_SIZE_Y 20
 
 #endif

@@ -29,6 +29,7 @@ A program is free software if users have all of these freedoms.
 #include <stdio.h>
 #include <fcntl.h>
 #include <unistd.h>
+#include <time.h>
 #include "../includes/system-killer.h"
 
 int	get_random(int min, int max) {
@@ -59,44 +60,55 @@ char	**init_map(int x, int y) {
 			return (NULL);
 	for (int i = 0; i <= y; i++)
 		for (int z = 0; z <= x; z++)
-			map[i][z] = '1';
+			map[i][z] = '0';
+	return (map);
+}
+
+char **map_generate(char **map, int x, int y) {
+	SetRandomSeed(time(NULL));
+	for (int i = 0; i < y; i++)
+		for (int z = 0; z < x; z++) {
+			map[z][i] = (GetRandomValue('0', '1'));
+		}
+	for (int i = 0; i < y; i++)
+		printf("%s\n", map[i]);
 	return (map);
 }
 
 /* Drunkard walk algorithm. */
-char	**map_generate(char	**map, int x, int y) {
-	int	point_x;
-	int	point_y;
-	int	iterations;
-	int	i;
+/* char	**map_generate(char	**map, int x, int y) { */
+/* 	int	point_x; */
+/* 	int	point_y; */
+/* 	int	iterations; */
+/* 	int	i; */
 
-	iterations = 0;
-	point_x = get_random(0, x);
-	point_y = get_random(0, y);
-	map[point_y][point_x] = 'X';
-	while(iterations < MAP_GEN_ITERATIONS * 5) {
-		switch (i = get_random(1,4)) {
-			case 1:
-				if (!point_x + 1 >= x)
-					point_x++;
-			case 2:
-				if (!point_y + 1 >= y)
-					point_y++;
-			case 3:
-				if (!point_x - 1 < 0)
-					point_x--;
-			case 4:
-				if (!point_y - 1 < 0)
-					point_y--;
-		}
-		if (map[point_y][point_x] == 0)
-			;
-		else {
-				map[point_y][point_x] = '0';
-				iterations++;
-		}
-	}
-	for (int i = 0; i <= y; i++)
-		printf("%s\n", map[i]);
-	return (map);
-}
+/* 	iterations = 0; */
+/* 	point_x = get_random(0, x); */
+/* 	point_y = get_random(0, y); */
+/* 	map[point_y][point_x] = 'X'; */
+/* 	while(iterations < DEFAULT_FLOOR_TILES * 5) { */
+/* 		switch (i = get_random(1,4)) { */
+/* 			case 1: */
+/* 				if (!point_x + 1 >= x) */
+/* 					point_x++; */
+/* 			case 2: */
+/* 				if (!point_y + 1 >= y) */
+/* 					point_y++; */
+/* 			case 3: */
+/* 				if (!point_x - 1 < 0) */
+/* 					point_x--; */
+/* 			case 4: */
+/* 				if (!point_y - 1 < 0) */
+/* 					point_y--; */
+/* 		} */
+/* 		if (map[point_y][point_x] == 0) */
+/* 			; */
+/* 		else { */
+/* 				map[point_y][point_x] = '0'; */
+/* 				iterations++; */
+/* 		} */
+/* 	} */
+/* 	for (int i = 0; i <= y; i++) */
+/* 		printf("%s\n", map[i]); */
+/* 	return (map); */
+/* } */
