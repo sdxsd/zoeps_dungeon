@@ -32,19 +32,34 @@ A program is free software if users have all of these freedoms.
 
 /* } */
 
+int	render_map(Texture2D *flr, char **map, int x, int y) {
+	for (int i = 0; i < y; i++) {
+		for (int z = 0; z < x; z++) {
+			BeginDrawing();
+			switch (map[i][z]) {
+			case '0':
+				DrawTexture(*flr, z * TEX_SIZE, i * TEX_SIZE, WHITE);
+			case '1':
+				DrawTexture(*flr, z * TEX_SIZE, i * TEX_SIZE, WHITE);
+			default: return (FALSE);
+			}
+			EndDrawing();
+		}
+	}
+	return (TRUE);
+}
+
 int	algemeen_init(game_data *game) {
 	InitWindow(WIN_X, WIN_Y, "System Killer!");
 	load_textures(game);
 	game->textures.plyr = LoadTextureFromImage(game->images.plyr);
 	game->textures.flr = LoadTextureFromImage(game->images.flr);
 	game->textures.wll = LoadTextureFromImage(game->images.wll);
-	while(!WindowShouldClose()) {
-		BeginDrawing();
-			ClearBackground(BLACK);
-			DrawTexture(game->textures.plyr, WIN_X / 2, WIN_Y / 2, WHITE);
-			DrawTexture(game->textures.wll, 0, 0, WHITE);
-			DrawTexture(game->textures.flr, WIN_X - 128, WIN_Y - 128, WHITE);
-		EndDrawing();
-	}
+	BeginDrawing();
+		ClearBackground(BLACK);
+		render_map(&game->textures.flr, game->map, DEFAULT_MAP_SIZE_X, DEFAULT_MAP_SIZE_Y);
+	EndDrawing();
+	while (!WindowShouldClose())
+		;
 	return (TRUE);
 }

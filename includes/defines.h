@@ -43,11 +43,11 @@ A program is free software if users have all of these freedoms.
 
 /* WINDOW DEFAULTS */
 # define WIN_X 640
-# define WIN_Y 512
+# define WIN_Y 640
 
 /* MAP GEN DEFAULTS */
 # define DEFAULT_FLOOR_TILES 128
-# define DEFAULT_MAP_SIZE_X 20
-# define DEFAULT_MAP_SIZE_Y 20
+# define DEFAULT_MAP_SIZE_X 9
+# define DEFAULT_MAP_SIZE_Y 9
 
 #endif
