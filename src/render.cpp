@@ -33,11 +33,9 @@ renderer::renderer(void) {
 }
 
 int	renderer::render(map *map) {
-
-	if (camera_pos_x - render_distance < 0)
-		;
-	if (camera_pos_y - render_distance < 0)
-		;
+	int	render_box_x = camera_pos_x + render_distance / 2;
+	int	render_box_y = camera_pos_y + render_distance / 2;
+	if (render_box_x)
 }
 
 int renderer::set_render_pos(int x, int y, map *map) {

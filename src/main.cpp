@@ -38,5 +38,6 @@ game::game(void) : level(DEFAULT_MAP_SIZE_X, DEFAULT_MAP_SIZE_Y) {
 
 int main() {
 	game reality;
+	reality.level.print_map();
 	return (0) ;
 }

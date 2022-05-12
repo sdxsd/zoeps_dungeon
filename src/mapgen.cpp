@@ -80,7 +80,7 @@ char **map::init_map(void) {
 			return (NULL);
 	for (int i = 0; i <= map_height; i++)
 		for (int z = 0; z <= map_width; z++)
-			map[i][z] = '1';
+			map[i][z] = '#';
 	return (map);
 }
 
@@ -113,16 +113,16 @@ char **map::map_generate(void) {
 		switch (direction) {
 			case 0:
 				for (int i = 0; y > 0 && i < length; i++)
-					map_data[y--][x] = '0';
+					map_data[y--][x] = '.';
 			case 1:
 				for (int i = 0; y < map_height && i < length; i++)
-					map_data[y++][x] = '0';
+					map_data[y++][x] = '.';
 			case 2:
 				for (int i = 0; x > 0 && i < length; i++)
-					map_data[y][x--] = '0';
+					map_data[y][x--] = '.';
 			case 3:
 				for (int i = 0; x < map_width && i < length; i++)
-					map_data[y][x++] = '0';
+					map_data[y][x++] = '.';
 		}
 		if (x == map_width || y == map_height) {
 			x = start_x;
