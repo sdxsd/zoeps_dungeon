@@ -32,5 +32,5 @@ A program is free software if users have all of these freedoms.
 int main() {
 	map test_map (DEFAULT_MAP_SIZE_X, DEFAULT_MAP_SIZE_Y);
 	test_map.print_map();
-	return (0);
+	return (0) ;
 }

@@ -48,6 +48,21 @@ int	get_seed(void) {
 	return (ret);
 }
 
+void map::border_walls(void) {
+	int	iterator_y = 0;
+	int	iterator_x = 0;
+
+	while (iterator_y++ < map_height)
+	{
+		map_data[iterator_y][map_width] = '1';
+		map_data[map_height][0] = '1';
+	}
+	while (iterator_x++ < map_width) {
+		map_data[map_height][iterator_x] = '1';
+		map_data[0][iterator_x] = '1';
+	}
+}
+
 map::map(int x, int y) {
 	map_width = x;
 	map_height = y;
@@ -55,7 +70,7 @@ map::map(int x, int y) {
 	map_generate();
 }
 
-char	**map::init_map(void) {
+char **map::init_map(void) {
 	char	**map;
 
 	map = (char**)calloc(sizeof(char*) * map_height, 1);
@@ -69,14 +84,14 @@ char	**map::init_map(void) {
 	return (map);
 }
 
-void	map::print_map(void) {
+void map::print_map(void) {
 	for (int i = 0; i < map_height; i++)
 		printf("%s\n", map_data[i]);
 }
 
 // Clean this up later...
 // This is embarassing.
-char	**map::map_generate(void) {
+char **map::map_generate(void) {
 	int	g_tunnels = 0;
 	int	start_x, start_y, x, y;
 	int	length, direction, last_direction;
@@ -115,5 +130,6 @@ char	**map::map_generate(void) {
 		}
 		g_tunnels++;
 	}
+	border_walls();
 	return (map_data);
 }

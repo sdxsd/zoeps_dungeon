@@ -83,7 +83,8 @@ class map {
 	public:
 	char **init_map(void);
 	char **map_generate(void);
-	void print_map();
+	void print_map(void);
+	void border_walls(void);
 	map(int x, int y);
 };
 
