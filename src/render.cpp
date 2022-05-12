@@ -25,6 +25,7 @@ A program is free software if users have all of these freedoms.
 */
 
 #include "../includes/main.hpp"
+#include <stdio.h>
 
 renderer::renderer(void) {
 	camera_pos_x = 0;
@@ -33,9 +34,24 @@ renderer::renderer(void) {
 }
 
 int	renderer::render(map *map) {
-	int	render_box_x = camera_pos_x + render_distance / 2;
-	int	render_box_y = camera_pos_y + render_distance / 2;
-	if (render_box_x)
+	printf("CP_X: %d | CP_Y: %d\n", camera_pos_x, camera_pos_y);
+	int	render_box_x = camera_pos_x - render_distance / 2;
+	int	render_box_y = camera_pos_y - render_distance / 2;
+	while (render_box_x < 0)
+		render_box_x++;
+	while (render_box_y < 0)
+		render_box_y++;
+	while (render_box_x > map->map_width)
+		render_box_x--;
+	while (render_box_y > map->map_height)
+		render_box_y--;
+	for (int i = 0; i < render_distance; i++) {
+		for (int x = 0; x < render_distance; x++) {
+			putchar(map->map_data[render_box_x + i][render_box_y + x]);
+		}
+		putchar('\n');
+	}
+	return (TRUE);
 }
 
 int renderer::set_render_pos(int x, int y, map *map) {

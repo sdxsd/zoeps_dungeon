@@ -38,6 +38,10 @@ game::game(void) : level(DEFAULT_MAP_SIZE_X, DEFAULT_MAP_SIZE_Y) {
 
 int main() {
 	game reality;
+	renderer camera;
 	reality.level.print_map();
+	printf("\n");
+	camera.set_render_pos(10, 10, &reality.level);
+	camera.render(&reality.level);
 	return (0) ;
 }

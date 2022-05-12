@@ -5,6 +5,7 @@ CFILES = \
 		src/files.cpp \
 		src/split.cpp \
 		src/mapgen.cpp \
+		src/render.cpp \
 		src/main.cpp
 OFILES = $(CFILES:.cpp=.o)
 

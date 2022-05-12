@@ -84,9 +84,8 @@ class renderer {
 };
 
 class map {
-	private:
-	char	**map_data;
 	public:
+	char	**map_data;
 	int		map_height;
 	int		map_width;
 	char **init_map(void);
