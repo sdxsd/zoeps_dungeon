@@ -44,6 +44,8 @@ A program is free software if users have all of these freedoms.
 /* WINDOW DEFAULTS */
 # define WIN_X 640
 # define WIN_Y 640
+# define WINDOW_TITLE "Dungeons of Wajoo"
+# define FPS 60
 
 /* MAP GEN DEFAULTS */
 # define DEFAULT_FLOOR_TILES 128

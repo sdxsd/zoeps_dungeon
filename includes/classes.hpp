@@ -88,13 +88,12 @@ class map {
 	map(int x, int y);
 };
 
-
 class game {
 	public:
 	int	s_height;
 	int	s_width;
 	map level;
-	player plyr;
+	// player plyr;
 	game(void);
 };
 
