@@ -36,15 +36,33 @@ game::game(void) : level(DEFAULT_MAP_SIZE_X, DEFAULT_MAP_SIZE_Y) {
 	SetTargetFPS(FPS);
 }
 
+
 int main() {
+	int	pos_x, pos_y;
 	game reality;
 	renderer camera;
+
+	pos_x = pos_y = 10;
 	reality.level.print_map();
 	reality.level.load_map_textures();
 	printf("\n");
-	camera.set_render_pos(10, 10, &reality.level);
+	camera.set_render_pos(pos_x, pos_y, &reality.level);
 	camera.render(&reality.level);
-	while (!WindowShouldClose())
-		;
+	while (!WindowShouldClose()) {
+		camera.render(&reality.level);
+		if (IsKeyReleased(KEY_RIGHT))
+			if (!(pos_x + 1 >= reality.level.map_width))
+				pos_x += 1;
+		if (IsKeyReleased(KEY_LEFT))
+			if (!(pos_x - 1 < 0))
+				pos_x -= 1;
+		if (IsKeyReleased(KEY_DOWN))
+			if (!(pos_y + 1 >= reality.level.map_height))
+				pos_y += 1;
+		if (IsKeyReleased(KEY_UP))
+			if (!(pos_y - 1 < 0))
+				pos_y -= 1;
+		camera.set_render_pos(pos_y, pos_x, &reality.level);
+	}
 	return (0) ;
 }

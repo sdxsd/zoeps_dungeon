@@ -44,16 +44,17 @@ int	renderer::render(map *map) {
 		render_box_x--;
 	while (render_box_y > map->map_height)
 		render_box_y--;
+
+	BeginDrawing();
 	for (int i = 0; i < render_distance; i++) {
 		for (int x = 0; x < render_distance; x++) {
-			BeginDrawing();
 			if (map->map_data[render_box_x + i][render_box_y + x] == '.')
 				DrawTexture(map->tex_floor, x * TEX_SIZE, i * TEX_SIZE, WHITE);
 			else if (map->map_data[render_box_x + i][render_box_y + x] == '#')
 				DrawTexture(map->tex_wall, x * TEX_SIZE, i * TEX_SIZE, WHITE);
-			EndDrawing();
 		}
 	}
+	EndDrawing();
 	return (TRUE);
 }
 
