@@ -24,37 +24,22 @@ The definition of Free Software is as follows:
 A program is free software if users have all of these freedoms.
 */
 
-#include <dirent.h>
-#include <stdlib.h>
-#include <string.h>
-#include <stdio.h>
-#include "../includes/system-killer.h"
+#ifndef SYSTEM_KILLER_H
+# define SYSTEM_KILLER_H
+# include "defines.hpp"
+# include "classes.hpp"
 
-/* Check for NULL later... */
-char	**level_array() {
-	char	*pwd;
-	char	**lvl_array;
+/* UTIL FUNCTIONS */
+char **split(char const *s, char c);
 
-	pwd = getenv("PWD");
-	if (!pwd) return (NULL);
-	lvl_array = split(pwd, '/');
-	if (!lvl_array) return NULL;
-	return (lvl_array);
-}
+/* FILE FUNCTIONS */
+char **level_array();
+char **file_name_array(char *dir_name);
 
-char	**file_name_array(char *dir_name) {
-	DIR				*dir;
-	struct dirent	*ent;
-	int				file_num;
-	char			**file_names;
+/* TEXTURE FUNCTIONS */
+int	load_textures(game *game);
 
-	file_names = malloc(sizeof(char *) * FILE_LIMIT);
-	if (!file_names) return (NULL);
-	dir = opendir(dir_name);
-	for (file_num = 0; file_num < FILE_LIMIT; file_num++) {
-		ent = readdir(dir);
-		if (!ent) break;
-		file_names[file_num] = strdup(ent->d_name);
-	}
-	return (file_names);
-}
+/* RENDERING FUNCTIONS  */
+int	algemeen_init(game *game);
+
+#endif // SYSTEM_KILLER_H

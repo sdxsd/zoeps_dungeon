@@ -24,26 +24,42 @@ The definition of Free Software is as follows:
 A program is free software if users have all of these freedoms.
 */
 
-#ifndef SYSTEM_KILLER_H
-# define SYSTEM_KILLER_H
-# include "defines.h"
-# include "structs.h"
+#include <raylib.h>
+#include "../includes/main.hpp"
 
-/* UTIL FUNCTIONS */
-char **split(char const *s, char c);
+/* int	rndr_loop() */
+/* { */
 
-/* FILE FUNCTIONS */
-char **level_array();
-char **file_name_array(char *dir_name);
+/* } */
 
-/* TEXTURE FUNCTIONS */
-int	load_textures(game_data *game);
+int	render_map(Texture2D *flr, char **map, int x, int y) {
+	for (int i = 0; i < y; i++) {
+		for (int z = 0; z < x; z++) {
+			BeginDrawing();
+			switch (map[i][z]) {
+			case '0':
+				DrawTexture(*flr, z * TEX_SIZE, i * TEX_SIZE, WHITE);
+			case '1':
+				DrawTexture(*flr, z * TEX_SIZE, i * TEX_SIZE, WHITE);
+			default: return (FALSE);
+			}
+			EndDrawing();
+		}
+	}
+	return (TRUE);
+}
 
-/* RENDERING FUNCTIONS  */
-int	algemeen_init(game_data *game);
-
-/* MAP FUNCTIONS */
-char	**map_generate(char	**map, int x, int y);
-char	**init_map(int x, int y);
-
-#endif // SYSTEM_KILLER_H
+int	algemeen_init(game_data *game) {
+	InitWindow(WIN_X, WIN_Y, "System Killer!");
+	load_textures(game);
+	game->textures.plyr = LoadTextureFromImage(game->images.plyr);
+	game->textures.flr = LoadTextureFromImage(game->images.flr);
+	game->textures.wll = LoadTextureFromImage(game->images.wll);
+	BeginDrawing();
+		ClearBackground(BLACK);
+		render_map(&game->textures.flr, game->map, DEFAULT_MAP_SIZE_X, DEFAULT_MAP_SIZE_Y);
+	EndDrawing();
+	while (!WindowShouldClose())
+		;
+	return (TRUE);
+}

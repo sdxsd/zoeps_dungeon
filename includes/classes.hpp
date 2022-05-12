@@ -24,30 +24,77 @@ The definition of Free Software is as follows:
 A program is free software if users have all of these freedoms.
 */
 
-/* Defines a number of useful constants. */
+#ifndef CLASSES_H
+# define CLASSES_H
+# include "defines.hpp"
+# include <raylib.h>
 
-#ifndef DEFINES_H
-# define DEFINES_H
+class player;
+class entity;
+class item;
+class inventory;
+class map;
+class game;
 
-# define TRUE 1
-# define FALSE 0
-# define FILE_LIMIT 128
+class entity {
+	private:
+	Texture2D	tex;
+	public:
+	char		*name;
+	short		lvl;
+	short		hp;
+	short 		dmg;
+	entity (void);
+	int	draw_entity(int x, int y);
+};
 
-/* Player defaults. */
-# define INV_SIZE 6;
-# define DEFAULT_HP 25;
-# define DEFAULT_DMG 5;
+class item {
+	private:
+	void	(*effect_player)(player *plyr);
+	Texture2D item_texture;
+	public:
+	char	**description;
+	char	**e_description;
+	char **gen_description(void);
+	item (void);
+};
 
-/* Texture defaults */
-# define TEX_SIZE 128
+class inventory {
+	private:
+	item	items[6];
+	int		items_count;
+	public:
+	inventory (void);
+	void add_item(item to_add);
+	void remove_item(int id);
+	item use_item(int id);
+};
 
-/* WINDOW DEFAULTS */
-# define WIN_X 640
-# define WIN_Y 640
+class player : entity {
+	inventory inv;
+};
 
-/* MAP GEN DEFAULTS */
-# define DEFAULT_FLOOR_TILES 128
-# define DEFAULT_MAP_SIZE_X 9
-# define DEFAULT_MAP_SIZE_Y 9
+class map {
+	private:
+	int		map_height;
+	int		map_width;
+	int		tile_count;
+	char	**map_data;
+	public:
+	char **init_map(void);
+	char **map_generate(void);
+	void **print_map();
+	map(int x, int y);
+};
 
-#endif
+
+class game {
+	public:
+	int	s_height;
+	int	s_width;
+	map level;
+	player plyr;
+	game(void);
+};
+
+#endif // CLASSES_H

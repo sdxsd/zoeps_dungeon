@@ -24,57 +24,14 @@ The definition of Free Software is as follows:
 A program is free software if users have all of these freedoms.
 */
 
-#ifndef STRUCTS_H
-# define STRUCTS_H
-# include "defines.h"
-# include <raylib.h>
+#include "../includes/main.hpp"
 
-typedef struct img_data {
-	Image	plyr;
-	Image	flr;
-	Image	wll;
-} image_data;
-
-typedef struct t_data {
-	Texture2D	plyr;
-	Texture2D	flr;
-	Texture2D	wll;
-} texture_data;
-
-typedef struct	i_data {
-	char	*description;
-	int		class;
-	int		effect;
-} item;
-
-typedef struct p_inv_data {
-	int		gold;
-	item	*items[];
-} plyr_inv;
-
-typedef struct p_data {
-	short		lvl;
-	short		health;
-	short		dmg;
-	char		*name;
-	plyr_inv	inventory;
-} plyr_data;
-
-typedef struct g_data {
-	int				screen_length;
-	int				screen_height;
-	int				lvl_count;
-	char			**lvl_names;
-	char			**file_names;
-	char			**map;
-	image_data		images;
-	texture_data	textures;
-	plyr_data		plyr;
-} game_data;
-
-typedef struct e_data {
-	char	*description;
-	void	(*f)(game_data *);
-} effect;
-
-#endif // STRUCTS_H
+int	load_textures(game *game) {
+	game->images.plyr = LoadImage("assets/plyr.png");
+	game->images.wll = LoadImage("assets/flr.png");
+	game->images.flr = LoadImage("assets/wll.png");
+	ImageResize(&game->images.plyr, TEX_SIZE, TEX_SIZE);
+	ImageResize(&game->images.wll, TEX_SIZE, TEX_SIZE);
+	ImageResize(&game->images.flr, TEX_SIZE, TEX_SIZE);
+	return (TRUE);
+}

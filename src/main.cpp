@@ -24,18 +24,17 @@ The definition of Free Software is as follows:
 A program is free software if users have all of these freedoms.
 */
 
-#include "../includes/system-killer.h"
+#include <raylib.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include "../includes/main.hpp"
 
-/* LATER  */
+int main() {
+	game	reality;
 
-/* char	**get_dialogue() { */
-
-/* } */
-
-/* char	**get_lore() { */
-
-/* } */
-
-/* char	**get_desc() { */
-
-/* } */
+	reality.level.init_map();
+	reality.level.map_generate(reality.map, DEFAULT_MAP_SIZE_X, DEFAULT_MAP_SIZE_Y);
+	for (int x = 0; x < DEFAULT_MAP_SIZE_Y; x++)
+		printf("%s\n", reality.level.map_data[x]);
+	return (0);
+}

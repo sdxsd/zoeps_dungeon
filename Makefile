@@ -1,21 +1,21 @@
 CC = gcc
 CFLAGS = -g -lraylib
-NAME = system-killer
+NAME = dungeons_of_wajoo
 CFILES = \
-		src/render.c \
-		src/textures.c \
-		src/files.c \
-		src/split.c \
-		src/mapgen.c \
-		src/main.c
-OFILES = $(CFILES:.c=.o)
+		src/render.cpp \
+		src/textures.cpp \
+		src/files.cpp \
+		src/split.cpp \
+		src/mapgen.cpp \
+		src/main.cpp
+OFILES = $(CFILES:.cpp=.o)
 
 all: $(NAME)
 
 $(NAME): $(OFILES)
 	$(CC) $(CFLAGS) $(OFILES) $(LINKEN) -o $(NAME)
 
-%.o: %.c
+%.o: %.cpp
 	@$(CC) -g $(CFLAGS) -c $< -o $@
 	@echo "COMPILED:" $<
 
