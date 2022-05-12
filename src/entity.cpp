@@ -25,43 +25,16 @@ A program is free software if users have all of these freedoms.
 */
 
 #include "../includes/main.hpp"
-#include <stdio.h>
 
-renderer::renderer(void) {
-	camera_pos_x = 0;
-	camera_pos_y = 0;
-	render_distance = RENDER_DISTANCE;
+entity::entity(void) {
+	name = (char*)"Jonkadingo";
+	lvl = 0;
+	hp = 0;
+	dmg = 0;
 }
 
-int	renderer::render(map *map) {
-	int	render_box_x = camera_pos_x - render_distance / 2;
-	int	render_box_y = camera_pos_y - render_distance / 2;
-	while (render_box_x < 0)
-		render_box_x++;
-	while (render_box_y < 0)
-		render_box_y++;
-	while (render_box_x > map->map_width)
-		render_box_x--;
-	while (render_box_y > map->map_height)
-		render_box_y--;
-	for (int i = 0; i < render_distance; i++) {
-		for (int x = 0; x < render_distance; x++) {
-			if (map->map_data[render_box_x + i][render_box_y + x] == '.')
-				DrawTexture(map->tex_floor, x * TEX_SIZE, i * TEX_SIZE, WHITE);
-			else if (map->map_data[render_box_x + i][render_box_y + x] == '#')
-				DrawTexture(map->tex_wall, x * TEX_SIZE, i * TEX_SIZE, WHITE);
-		}
-	}
-	return (TRUE);
-}
-
-int renderer::set_render_pos(int x, int y, map *map) {
-	if (x > map->map_width || x < 0 ||
-		y > map->map_height || y < 0)
-		return (FALSE);
-	else {
-		camera_pos_x = x;
-		camera_pos_y = y;
-		return (TRUE);
-	}
+int entity::entity_load_texture(char *path) {
+	Image img = LoadImage(path);
+	ImageResize(&img, TEX_SIZE, TEX_SIZE);
+	tex = LoadTextureFromImage(img);
 }

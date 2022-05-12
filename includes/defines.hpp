@@ -42,13 +42,13 @@ A program is free software if users have all of these freedoms.
 # define TEX_SIZE 128
 
 // WINDOW DEFAULTS
-# define WIN_X 640
-# define WIN_Y 640
+# define WIN_X 1152
+# define WIN_Y 1152
 # define WINDOW_TITLE "Dungeons of Wajoo"
 # define FPS 60
 
 // RENDERER DEFAULTS
-# define RENDER_DISTANCE 5;
+# define RENDER_DISTANCE 9;
 
 // MAP GEN DEFAULTS
 # define DEFAULT_MAP_SIZE_X 20

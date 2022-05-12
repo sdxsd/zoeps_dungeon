@@ -37,14 +37,14 @@ class map;
 class game;
 
 class entity {
-	private:
-	Texture2D	tex;
 	public:
+	Texture2D	tex;
 	char		*name;
 	short		lvl;
 	short		hp;
 	short 		dmg;
 	entity (void);
+	int entity_load_texture(char *path);
 	int	draw_entity(int x, int y);
 };
 

@@ -3,6 +3,7 @@ CFLAGS = -g -lraylib
 NAME = dungeons_of_wajoo
 CFILES = \
 		src/files.cpp \
+		src/entity.cpp \
 		src/split.cpp \
 		src/mapgen.cpp \
 		src/render.cpp \

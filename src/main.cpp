@@ -41,6 +41,7 @@ int main() {
 	int	pos_x, pos_y;
 	game reality;
 	renderer camera;
+	entity	plyr;
 
 	pos_x = pos_y = 10;
 	reality.level.print_map();
@@ -48,8 +49,12 @@ int main() {
 	printf("\n");
 	camera.set_render_pos(pos_x, pos_y, &reality.level);
 	camera.render(&reality.level);
+	plyr.entity_load_texture((char*)"assets/plyr.png");
 	while (!WindowShouldClose()) {
+		BeginDrawing();
 		camera.render(&reality.level);
+		DrawTexture(plyr.tex, reality.s_width / 2 - plyr.tex.width, reality.s_height / 2 - plyr.tex.height, WHITE);
+		EndDrawing();
 		if (IsKeyReleased(KEY_RIGHT))
 			if (!(pos_x + 1 >= reality.level.map_width))
 				pos_x += 1;
