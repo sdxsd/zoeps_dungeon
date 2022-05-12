@@ -80,6 +80,7 @@ class renderer {
 	public:
 	int	set_render_pos(int x, int y, map *map);
 	int	render(map *map);
+	renderer(void);
 };
 
 class map {
