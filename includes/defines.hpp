@@ -39,11 +39,11 @@ A program is free software if users have all of these freedoms.
 # define DEFAULT_DMG 5;
 
 // TEXTURE DEFAULTS
-# define TEX_SIZE 128
+# define TEX_SIZE 32
 
 // WINDOW DEFAULTS
-# define WIN_X 640
-# define WIN_Y 640
+# define WIN_X 160
+# define WIN_Y 160
 # define WINDOW_TITLE "Dungeons of Wajoo"
 # define FPS 60
 

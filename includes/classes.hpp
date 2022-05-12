@@ -88,6 +88,9 @@ class map {
 	char	**map_data;
 	int		map_height;
 	int		map_width;
+	Texture2D tex_floor;
+	Texture2D tex_wall;
+	int	load_map_textures(void);
 	char **init_map(void);
 	char **map_generate(void);
 	void print_map(void);

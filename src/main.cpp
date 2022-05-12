@@ -40,8 +40,11 @@ int main() {
 	game reality;
 	renderer camera;
 	reality.level.print_map();
+	reality.level.load_map_textures();
 	printf("\n");
 	camera.set_render_pos(10, 10, &reality.level);
 	camera.render(&reality.level);
+	while (!WindowShouldClose())
+		;
 	return (0) ;
 }

@@ -34,7 +34,6 @@ renderer::renderer(void) {
 }
 
 int	renderer::render(map *map) {
-	printf("CP_X: %d | CP_Y: %d\n", camera_pos_x, camera_pos_y);
 	int	render_box_x = camera_pos_x - render_distance / 2;
 	int	render_box_y = camera_pos_y - render_distance / 2;
 	while (render_box_x < 0)
@@ -47,9 +46,13 @@ int	renderer::render(map *map) {
 		render_box_y--;
 	for (int i = 0; i < render_distance; i++) {
 		for (int x = 0; x < render_distance; x++) {
-			putchar(map->map_data[render_box_x + i][render_box_y + x]);
+			BeginDrawing();
+			if (map->map_data[render_box_x + i][render_box_y + x] == '.')
+				DrawTexture(map->tex_floor, x * 32, i * 32, WHITE);
+			else if (map->map_data[render_box_x + i][render_box_y + x] == '#')
+				DrawTexture(map->tex_floor, x * 32, i * 32, WHITE);
+			EndDrawing();
 		}
-		putchar('\n');
 	}
 	return (TRUE);
 }

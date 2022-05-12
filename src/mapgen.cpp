@@ -32,6 +32,12 @@ A program is free software if users have all of these freedoms.
 #include <time.h>
 #include "../includes/main.hpp"
 
+int	map::load_map_textures(void) {
+	tex_floor = LoadTexture("assets/flr.png");
+	tex_wall = LoadTexture("assets/wll.png");
+	return (TRUE);
+}
+
 int	get_seed(void) {
 	int	fd;
 	int	*num;
