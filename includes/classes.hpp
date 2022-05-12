@@ -74,13 +74,20 @@ class player : entity {
 	inventory inv;
 };
 
+class renderer {
+	private:
+	int	camera_pos_x, camera_pos_y, render_distance;
+	public:
+	int	set_render_pos(int x, int y, map *map);
+	int	render(map *map);
+};
+
 class map {
 	private:
-	int		map_height;
-	int		map_width;
-	int		tile_count;
 	char	**map_data;
 	public:
+	int		map_height;
+	int		map_width;
 	char **init_map(void);
 	char **map_generate(void);
 	void print_map(void);

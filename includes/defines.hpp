@@ -33,22 +33,24 @@ A program is free software if users have all of these freedoms.
 # define FALSE 0
 # define FILE_LIMIT 128
 
-/* Player defaults. */
+// PLAYER DEFAULTS
 # define INV_SIZE 6;
 # define DEFAULT_HP 25;
 # define DEFAULT_DMG 5;
 
-/* Texture defaults */
+// TEXTURE DEFAULTS
 # define TEX_SIZE 128
 
-/* WINDOW DEFAULTS */
+// WINDOW DEFAULTS
 # define WIN_X 640
 # define WIN_Y 640
 # define WINDOW_TITLE "Dungeons of Wajoo"
 # define FPS 60
 
-/* MAP GEN DEFAULTS */
-# define DEFAULT_FLOOR_TILES 128
+// RENDERER DEFAULTS
+# define RENDER_DISTANCE 5;
+
+// MAP GEN DEFAULTS
 # define DEFAULT_MAP_SIZE_X 20
 # define DEFAULT_MAP_SIZE_Y 20
 # define MAX_TUNNELS 80

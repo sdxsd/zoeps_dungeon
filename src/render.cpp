@@ -25,3 +25,14 @@ A program is free software if users have all of these freedoms.
 */
 
 #include "../includes/main.hpp"
+
+int renderer::set_render_pos(int x, int y, map *map) {
+	if (x > map->map_width || x < 0 ||
+		y > map->map_height || y < 0)
+		return (FALSE);
+	else {
+		camera_pos_x = x;
+		camera_pos_y = y;
+		return (TRUE);
+	}
+}
