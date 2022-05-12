@@ -28,7 +28,7 @@ A program is free software if users have all of these freedoms.
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
-#include "../includes/system-killer.hpp"
+#include "../includes/main.hpp"
 
 /* Check for NULL later... */
 char	**level_array() {
@@ -48,7 +48,7 @@ char	**file_name_array(char *dir_name) {
 	int				file_num;
 	char			**file_names;
 
-	file_names = malloc(sizeof(char *) * FILE_LIMIT);
+	file_names = (char**)malloc(sizeof(char *) * FILE_LIMIT);
 	if (!file_names) return (NULL);
 	dir = opendir(dir_name);
 	for (file_num = 0; file_num < FILE_LIMIT; file_num++) {

@@ -71,7 +71,7 @@ char	**split(char const *s, char c) {
 	iterator = 0;
 	if (!s)
 		return (NULL);
-	s_array = malloc(sizeof(char *) * (wordcount(s, c) + 1));
+	s_array = (char**)malloc(sizeof(char *) * (wordcount(s, c) + 1));
 	if (!s_array)
 		return (NULL);
 	while (s_array && iterator < strlen(s)) {

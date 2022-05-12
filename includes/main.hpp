@@ -36,10 +36,4 @@ char **split(char const *s, char c);
 char **level_array();
 char **file_name_array(char *dir_name);
 
-/* TEXTURE FUNCTIONS */
-int	load_textures(game *game);
-
-/* RENDERING FUNCTIONS  */
-int	algemeen_init(game *game);
-
 #endif // SYSTEM_KILLER_H

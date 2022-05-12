@@ -53,6 +53,11 @@ char	**map::init_map(void) {
 	return (map);
 }
 
+void	map::print_map(void) {
+	for (int i = 0; i < map_height; i++)
+		printf("%s\n", map_data[i]);
+}
+
 char	**map::map_generate(void) {
 	int	g_tunnels = 0;
 	int	start_x, start_y;

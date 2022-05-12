@@ -30,11 +30,7 @@ A program is free software if users have all of these freedoms.
 #include "../includes/main.hpp"
 
 int main() {
-	game	reality;
-
-	reality.level.init_map();
-	reality.level.map_generate(reality.map, DEFAULT_MAP_SIZE_X, DEFAULT_MAP_SIZE_Y);
-	for (int x = 0; x < DEFAULT_MAP_SIZE_Y; x++)
-		printf("%s\n", reality.level.map_data[x]);
+	map test_map (DEFAULT_MAP_SIZE_X, DEFAULT_MAP_SIZE_Y);
+	test_map.print_map();
 	return (0);
 }

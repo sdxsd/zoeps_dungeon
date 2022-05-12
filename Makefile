@@ -2,8 +2,6 @@ CC = gcc
 CFLAGS = -g -lraylib
 NAME = dungeons_of_wajoo
 CFILES = \
-		src/render.cpp \
-		src/textures.cpp \
 		src/files.cpp \
 		src/split.cpp \
 		src/mapgen.cpp \
