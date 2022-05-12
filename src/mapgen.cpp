@@ -32,6 +32,22 @@ A program is free software if users have all of these freedoms.
 #include <time.h>
 #include "../includes/main.hpp"
 
+int	get_seed(void) {
+	int	fd;
+	int	*num;
+	int	ret;
+
+	num = (int*)malloc(sizeof(int));
+	if (!num)
+		return (-1);
+	fd = open("/dev/urandom", O_RDONLY);
+	read(fd, num, sizeof(int));
+	ret = *num;
+	free(num);
+	close(fd);
+	return (ret);
+}
+
 map::map(int x, int y) {
 	map_width = x;
 	map_height = y;
@@ -58,34 +74,44 @@ void	map::print_map(void) {
 		printf("%s\n", map_data[i]);
 }
 
+// Clean this up later...
+// This is embarassing.
 char	**map::map_generate(void) {
 	int	g_tunnels = 0;
-	int	start_x, start_y;
+	int	start_x, start_y, x, y;
 	int	length, direction, last_direction;
 
 	last_direction = -1;
-	start_x = GetRandomValue(0,map_width);
-	start_y = GetRandomValue(0,map_height);
-	SetRandomSeed(time(NULL));
-	while (g_tunnels < MAX_TUNNELS) {
-		length = GetRandomValue(0, length);
+	start_x = GetRandomValue(0, map_width);
+	start_y = GetRandomValue(0, map_height);
+	x = start_x;
+	y = start_y;
+	while (g_tunnels < MAX_TUNNELS - 30) {
+		SetRandomSeed(get_seed());
+		length = GetRandomValue(4, TUNNEL_LENGTH);
 		direction = GetRandomValue(0,3);
-		while (direction == last_direction)
-			direction = GetRandomValue(0,3);
+		if (last_direction == 0 || last_direction == 1)
+				direction = GetRandomValue(2,3);
+		else if (last_direction == 2 || last_direction == 3)
+				direction = GetRandomValue(0,1);
 		last_direction = direction;
 		switch (direction) {
 			case 0:
-				for (int i = 0; start_y > 0 && i < length; i++)
-					map_data[start_y--][start_x] = '0';
+				for (int i = 0; y > 0 && i < length; i++)
+					map_data[y--][x] = '0';
 			case 1:
-				for (int i = 0; start_y < map_height && i < length; i++)
-					map_data[start_y++][start_x] = '0';
+				for (int i = 0; y < map_height && i < length; i++)
+					map_data[y++][x] = '0';
 			case 2:
-				for (int i = 0; start_x > 0 && i < length; i++)
-					map_data[start_y][start_x--] = '0';
+				for (int i = 0; x > 0 && i < length; i++)
+					map_data[y][x--] = '0';
 			case 3:
-				for (int i = 0; start_x < map_width && i < length; i++)
-					map_data[start_y][start_x++] = '0';
+				for (int i = 0; x < map_width && i < length; i++)
+					map_data[y][x++] = '0';
+		}
+		if (x == map_width || y == map_height) {
+			x = start_x;
+			y = start_y;
 		}
 		g_tunnels++;
 	}
