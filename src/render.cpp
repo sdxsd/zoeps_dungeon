@@ -47,9 +47,9 @@ int	renderer::render(map *map) {
 	for (int i = 0; i < render_distance; i++) {
 		for (int x = 0; x < render_distance; x++) {
 			if (map->map_data[render_box_x + i][render_box_y + x] == '.')
-				DrawTexture(map->tex_floor, x * TEX_SIZE, i * TEX_SIZE, WHITE);
+				DrawTexture(map->tex_floor, x * TEX_SIZE, i * TEX_SIZE, BLUE);
 			else if (map->map_data[render_box_x + i][render_box_y + x] == '#')
-				DrawTexture(map->tex_wall, x * TEX_SIZE, i * TEX_SIZE, WHITE);
+				DrawTexture(map->tex_wall, x * TEX_SIZE, i * TEX_SIZE, RED);
 		}
 	}
 	return (TRUE);
