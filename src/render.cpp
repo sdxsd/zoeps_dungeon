@@ -48,9 +48,9 @@ int	renderer::render(map *map) {
 		for (int x = 0; x < render_distance; x++) {
 			BeginDrawing();
 			if (map->map_data[render_box_x + i][render_box_y + x] == '.')
-				DrawTexture(map->tex_floor, x * 32, i * 32, WHITE);
+				DrawTexture(map->tex_floor, x * TEX_SIZE, i * TEX_SIZE, WHITE);
 			else if (map->map_data[render_box_x + i][render_box_y + x] == '#')
-				DrawTexture(map->tex_floor, x * 32, i * 32, WHITE);
+				DrawTexture(map->tex_wall, x * TEX_SIZE, i * TEX_SIZE, WHITE);
 			EndDrawing();
 		}
 	}

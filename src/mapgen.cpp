@@ -33,8 +33,12 @@ A program is free software if users have all of these freedoms.
 #include "../includes/main.hpp"
 
 int	map::load_map_textures(void) {
-	tex_floor = LoadTexture("assets/flr.png");
-	tex_wall = LoadTexture("assets/wll.png");
+	Image wall = LoadImage("assets/wll.png");
+	Image floor = LoadImage("assets/flr.png");
+	ImageResize(&wall, TEX_SIZE, TEX_SIZE);
+	ImageResize(&floor, TEX_SIZE, TEX_SIZE);
+	tex_floor = LoadTextureFromImage(floor);
+	tex_wall = LoadTextureFromImage(wall);
 	return (TRUE);
 }
 
