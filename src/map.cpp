@@ -39,6 +39,7 @@ int	map::load_map_textures(void) {
 	ImageResize(&floor, TEX_SIZE, TEX_SIZE);
 	tex_floor = LoadTextureFromImage(floor);
 	tex_wall = LoadTextureFromImage(wall);
+	if (!tex_wall.mipmaps || !tex_floor.mipmaps) return (FALSE);
 	return (TRUE);
 }
 
