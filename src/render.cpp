@@ -26,19 +26,27 @@ A program is free software if users have all of these freedoms.
 #include "../includes/main.hpp"
 #include <stdio.h>
 
-static int draw_to_image(Image dst, Image src, int x, int y) {
+void renderer::set_changed(void) {
+	if (changed)
+		changed = 0;
+	else if (!changed)
+		changed = 1;
+}
+
+int draw_to_image(Image dst, Image src, int x, int y) {
 	Rectangle	dst_rec;
 	Rectangle	src_rec;
 
-	dst_rec.x = 0;
-	dst_rec.y = 0;
-	dst_rec.height = (float)dst.height;
-	dst_rec.width = (float)dst.width;
-	src_rec.x = (float)x;
-	src_rec.y = (float)y;
+	dst_rec.x = (float)x;
+	dst_rec.y = (float)y;
+	dst_rec.height = (float)src.height;
+	dst_rec.width = (float)src.width;
+	src_rec.x = 0;
+	src_rec.y = 0;
 	src_rec.height = (float)src.height;
 	src_rec.width = (float)src.width;
 	ImageDraw(&dst, src, src_rec, dst_rec, WHITE);
+	return (TRUE);
 }
 
 Image renderer::gen_image(map *map, int width, int height) {
@@ -48,7 +56,7 @@ Image renderer::gen_image(map *map, int width, int height) {
 	for (int y = 0; y < height; y++)
 		for (int x = 0; x < width; x++) {
 			if (map->map_data[y][x] == '.')
-				draw_to_image(img, map->img_floor, x * TEX_SIZE, y * TEX_SIZE);
+				draw_to_image(img, map->img_floor, x * TEX_SIZE,  y * TEX_SIZE);
 			else if (map->map_data[y][x] == '#')
 				draw_to_image(img, map->img_wall, x * TEX_SIZE, y * TEX_SIZE);
 		}
@@ -58,12 +66,16 @@ Image renderer::gen_image(map *map, int width, int height) {
 renderer::renderer(void) {
 	camera_pos_x = 0;
 	camera_pos_y = 0;
+	changed = 1;
 	render_distance = RENDER_DISTANCE;
 }
 
 int	renderer::render(map *map) {
-	int	render_box_x = camera_pos_x - render_distance / 2;
-	int	render_box_y = camera_pos_y - render_distance / 2;
+	Image		screen;
+	Texture2D	frame;
+	int		render_box_x = camera_pos_x - render_distance / 2;
+	int		render_box_y = camera_pos_y - render_distance / 2;
+
 	while (render_box_x < 0)
 		render_box_x++;
 	while (render_box_y < 0)
@@ -72,14 +84,11 @@ int	renderer::render(map *map) {
 		render_box_x--;
 	while (render_box_y > map->map_height)
 		render_box_y--;
-	for (int i = 0; i < render_distance; i++) {
-		for (int x = 0; x < render_distance; x++) {
-			if (map->map_data[render_box_x + i][render_box_y + x] == '.')
-				DrawTexture(map->tex_floor, x * TEX_SIZE, i * TEX_SIZE, BLUE);
-			else if (map->map_data[render_box_x + i][render_box_y + x] == '#')
-				DrawTexture(map->tex_wall, x * TEX_SIZE, i * TEX_SIZE, RED);
-		}
-	}
+	screen = gen_image(map, render_box_x, render_box_y);
+	frame = LoadTextureFromImage(screen);
+	UnloadImage(screen);
+	DrawTexture(frame, 0, 0, WHITE);
+	set_changed();
 	return (TRUE);
 }
 

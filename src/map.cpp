@@ -32,14 +32,11 @@ A program is free software if users have all of these freedoms.
 #include <time.h>
 #include "../includes/main.hpp"
 
-int	map::load_map_textures(void) {
-	Image wall = LoadImage("assets/wll.png");
-	Image floor = LoadImage("assets/flr.png");
-	ImageResize(&wall, TEX_SIZE, TEX_SIZE);
-	ImageResize(&floor, TEX_SIZE, TEX_SIZE);
-	tex_floor = LoadTextureFromImage(floor);
-	tex_wall = LoadTextureFromImage(wall);
-	if (!tex_wall.mipmaps || !tex_floor.mipmaps) return (FALSE);
+int	map::load_map_images(void) {
+	img_wall = LoadImage("assets/wll.png");
+	img_floor = LoadImage("assets/flr.png");
+	ImageResize(&img_wall, TEX_SIZE, TEX_SIZE);
+	ImageResize(&img_floor, TEX_SIZE, TEX_SIZE);
 	return (TRUE);
 }
 

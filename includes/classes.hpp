@@ -76,9 +76,12 @@ class player : entity {
 
 class renderer {
 	private:
-	int	camera_pos_x, camera_pos_y, render_distance;
+	Texture2D	frame;
 	public:
-	int	set_render_pos(int x, int y, map *map);
+	int			camera_pos_x, camera_pos_y, render_distance;
+	bool		changed;
+	void set_changed(void);
+	int set_render_pos(int x, int y, map *map);
 	int	render(map *map);
 	Image gen_image(map *map, int width, int height);
 	renderer(void);
@@ -91,13 +94,12 @@ class map {
 	int		map_width;
 	Image	img_floor;
 	Image	img_wall;
-	// Texture2D tex_floor;
-	// Texture2D tex_wall;
-	// int	load_map_textures(void);
+	int	load_map_images(void);
 	char **init_map(void);
 	char **map_generate(void);
 	void print_map(void);
 	void border_walls(void);
+	int draw_to_image(Image dst, Image src, int x, int y);
 	map(int x, int y);
 };
 
@@ -106,6 +108,7 @@ class game {
 	int	s_height;
 	int	s_width;
 	map level;
+	renderer camera;
 	// player plyr;
 	game(void);
 };
