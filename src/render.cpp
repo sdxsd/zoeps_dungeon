@@ -56,8 +56,8 @@ int	renderer::render(map *map) {
 }
 
 int renderer::set_render_pos(int x, int y, map *map) {
-	if (x > map->map_width || x < 0 ||
-		y > map->map_height || y < 0)
+	if (x > map->map_width - render_distance || x < 0 ||
+		y > map->map_height - render_distance || y < 0)
 		return (FALSE);
 	else {
 		camera_pos_x = x;
