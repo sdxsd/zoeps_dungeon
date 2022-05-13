@@ -55,9 +55,9 @@ Image renderer::gen_image(map *map, int width, int height) {
 	img = GenImageColor(WIN_X, WIN_Y, WHITE);
 	for (int y = 0; y < height; y++)
 		for (int x = 0; x < width; x++) {
-			if (map->map_data[y][x] == '.')
+			if (map->map_data[y + height][x + width] == '.')
 				draw_to_image(img, map->img_floor, x * TEX_SIZE,  y * TEX_SIZE);
-			else if (map->map_data[y][x] == '#')
+			else if (map->map_data[y + height][x + width] == '#')
 				draw_to_image(img, map->img_wall, x * TEX_SIZE, y * TEX_SIZE);
 		}
 	return (img);
