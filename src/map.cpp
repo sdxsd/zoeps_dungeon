@@ -65,12 +65,12 @@ void map::border_walls(void) {
 
 	while (iterator_y++ < map_height)
 	{
-		map_data[iterator_y][map_width] = '1';
-		map_data[map_height][0] = '1';
+		map_data[iterator_y][map_width] = '#';
+		map_data[iterator_y][0] = '#';
 	}
 	while (iterator_x++ < map_width) {
-		map_data[map_height][iterator_x] = '1';
-		map_data[0][iterator_x] = '1';
+		map_data[map_height - 1][iterator_x] = '#';
+		map_data[0][iterator_x] = '#';
 	}
 }
 
@@ -84,7 +84,7 @@ map::map(int x, int y) {
 char **map::init_map(void) {
 	char	**map;
 
-	map = (char**)calloc(sizeof(char*) * map_height, 1);
+	map = (char**)calloc(sizeof(char*), map_height);
 	if (!map) return (NULL);
 	for (int i = 0; i <= map_height; i++)
 		if (!(map[i] = (char*)calloc(sizeof(char), map_width)))
