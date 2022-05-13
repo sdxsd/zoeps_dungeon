@@ -53,7 +53,6 @@ int main() {
 	while (!WindowShouldClose()) {
 		BeginDrawing();
 		camera.render(&reality.level);
-		DrawTexture(plyr.tex, reality.s_width / 2 + plyr.tex.width, reality.s_height / 2 + plyr.tex.height, WHITE);
 		EndDrawing();
 		if (IsKeyReleased(KEY_RIGHT))
 			if (!(pos_x + 1 >= reality.level.map_width))

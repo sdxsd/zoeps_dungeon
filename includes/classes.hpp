@@ -80,6 +80,7 @@ class renderer {
 	public:
 	int	set_render_pos(int x, int y, map *map);
 	int	render(map *map);
+	Image gen_image(map *map, int width, int height);
 	renderer(void);
 };
 
@@ -88,9 +89,11 @@ class map {
 	char	**map_data;
 	int		map_height;
 	int		map_width;
-	Texture2D tex_floor;
-	Texture2D tex_wall;
-	int	load_map_textures(void);
+	Image	img_floor;
+	Image	img_wall;
+	// Texture2D tex_floor;
+	// Texture2D tex_wall;
+	// int	load_map_textures(void);
 	char **init_map(void);
 	char **map_generate(void);
 	void print_map(void);

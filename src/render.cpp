@@ -1,6 +1,5 @@
 /*
 THIS FILE IS LICENSED UNDER THE GNU GPLv3
-
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
@@ -26,6 +25,35 @@ A program is free software if users have all of these freedoms.
 
 #include "../includes/main.hpp"
 #include <stdio.h>
+
+static int draw_to_image(Image dst, Image src, int x, int y) {
+	Rectangle	dst_rec;
+	Rectangle	src_rec;
+
+	dst_rec.x = 0;
+	dst_rec.y = 0;
+	dst_rec.height = (float)dst.height;
+	dst_rec.width = (float)dst.width;
+	src_rec.x = (float)x;
+	src_rec.y = (float)y;
+	src_rec.height = (float)src.height;
+	src_rec.width = (float)src.width;
+	ImageDraw(&dst, src, src_rec, dst_rec, WHITE);
+}
+
+Image renderer::gen_image(map *map, int width, int height) {
+	Image	img;
+
+	img = GenImageColor(WIN_X, WIN_Y, WHITE);
+	for (int y = 0; y < height; y++)
+		for (int x = 0; x < width; x++) {
+			if (map->map_data[y][x] == '.')
+				draw_to_image(img, map->img_floor, x * TEX_SIZE, y * TEX_SIZE);
+			else if (map->map_data[y][x] == '#')
+				draw_to_image(img, map->img_wall, x * TEX_SIZE, y * TEX_SIZE);
+		}
+	return (img);
+}
 
 renderer::renderer(void) {
 	camera_pos_x = 0;
