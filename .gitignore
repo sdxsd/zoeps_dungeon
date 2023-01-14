@@ -1,5 +1,6 @@
 # Prerequisites
 *.d
+zoeps_dungeon
 
 # Object files
 *.o

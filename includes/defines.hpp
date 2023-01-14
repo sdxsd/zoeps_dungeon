@@ -44,7 +44,7 @@ A program is free software if users have all of these freedoms.
 // WINDOW DEFAULTS
 # define WIN_X 576
 # define WIN_Y 576
-# define WINDOW_TITLE "Dungeons of Wajoo"
+# define WINDOW_TITLE "Zoeps's Dungeon"
 # define FPS 60
 
 // RENDERER DEFAULTS

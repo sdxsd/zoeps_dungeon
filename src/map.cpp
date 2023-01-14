@@ -32,6 +32,37 @@ A program is free software if users have all of these freedoms.
 #include <time.h>
 #include "../includes/main.hpp"
 
+int draw_to_image(Image dst, Image src, int x, int y) {
+	Rectangle	dst_rec;
+	Rectangle	src_rec;
+
+	dst_rec.x = (float)x;
+	dst_rec.y = (float)y;
+	dst_rec.height = (float)src.height;
+	dst_rec.width = (float)src.width;
+	src_rec.x = 0;
+	src_rec.y = 0;
+	src_rec.height = (float)src.height;
+	src_rec.width = (float)src.width;
+	ImageDraw(&dst, src, src_rec, dst_rec, WHITE);
+	return (TRUE);
+}
+
+Image map::gen_image(void) {
+	Image	img;
+
+	img = GenImageColor(WIN_X, WIN_Y, WHITE);
+	for (int y = 0; y < height; y++) {
+		for (int x = 0; x < width; x++) {
+			if (map_data[y + height][x + width] == '.')
+				draw_to_image(img, img_floor, x * TEX_SIZE,  y * TEX_SIZE);
+			else if (map_data[y + height][x + width] == '#')
+				draw_to_image(img, img_wall, x * TEX_SIZE, y * TEX_SIZE);
+		}
+	}
+	return (img);
+}
+
 int	map::load_map_images(void) {
 	img_wall = LoadImage("assets/wll.png");
 	img_floor = LoadImage("assets/flr.png");
@@ -60,20 +91,20 @@ void map::border_walls(void) {
 	int	iterator_y = 0;
 	int	iterator_x = 0;
 
-	while (iterator_y++ < map_height)
+	while (iterator_y++ < height)
 	{
-		map_data[iterator_y][map_width] = '#';
+		map_data[iterator_y][width] = '#';
 		map_data[iterator_y][0] = '#';
 	}
-	while (iterator_x++ < map_width) {
-		map_data[map_height - 1][iterator_x] = '#';
+	while (iterator_x++ < width) {
+		map_data[height - 1][iterator_x] = '#';
 		map_data[0][iterator_x] = '#';
 	}
 }
 
 map::map(int x, int y) {
-	map_width = x;
-	map_height = y;
+	width = x;
+	height = y;
 	map_data = init_map();
 	map_generate();
 }
@@ -81,19 +112,19 @@ map::map(int x, int y) {
 char **map::init_map(void) {
 	char	**map;
 
-	map = (char**)calloc(sizeof(char*), map_height);
+	map = (char**)calloc(sizeof(char*), height);
 	if (!map) return (NULL);
-	for (int i = 0; i <= map_height; i++)
-		if (!(map[i] = (char*)calloc(sizeof(char), map_width)))
+	for (int i = 0; i <= height; i++)
+		if (!(map[i] = (char*)calloc(sizeof(char), width)))
 			return (NULL);
-	for (int i = 0; i <= map_height; i++)
-		for (int z = 0; z <= map_width; z++)
+	for (int i = 0; i <= height; i++)
+		for (int z = 0; z <= width; z++)
 			map[i][z] = '#';
 	return (map);
 }
 
 void map::print_map(void) {
-	for (int i = 0; i < map_height; i++)
+	for (int i = 0; i < height; i++)
 		printf("%s\n", map_data[i]);
 }
 
@@ -105,8 +136,8 @@ char **map::map_generate(void) {
 	int	length, direction, last_direction;
 
 	last_direction = -1;
-	start_x = GetRandomValue(0, map_width);
-	start_y = GetRandomValue(0, map_height);
+	start_x = GetRandomValue(0, width);
+	start_y = GetRandomValue(0, height);
 	x = start_x;
 	y = start_y;
 	while (g_tunnels < MAX_TUNNELS - 30) {
@@ -123,16 +154,16 @@ char **map::map_generate(void) {
 				for (int i = 0; y > 0 && i < length; i++)
 					map_data[y--][x] = '.';
 			case 1:
-				for (int i = 0; y < map_height && i < length; i++)
+				for (int i = 0; y < height && i < length; i++)
 					map_data[y++][x] = '.';
 			case 2:
 				for (int i = 0; x > 0 && i < length; i++)
 					map_data[y][x--] = '.';
 			case 3:
-				for (int i = 0; x < map_width && i < length; i++)
+				for (int i = 0; x < width && i < length; i++)
 					map_data[y][x++] = '.';
 		}
-		if (x == map_width || y == map_height) {
+		if (x == width || y == height) {
 			x = start_x;
 			y = start_y;
 		}

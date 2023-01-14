@@ -88,19 +88,21 @@ class renderer {
 };
 
 class map {
+	private:
+		char	**map_data;
+		int		height;
+		int		width;
+		Image	img_floor;
+		Image	img_wall;
 	public:
-	char	**map_data;
-	int		map_height;
-	int		map_width;
-	Image	img_floor;
-	Image	img_wall;
-	int	load_map_images(void);
-	char **init_map(void);
-	char **map_generate(void);
-	void print_map(void);
-	void border_walls(void);
-	int draw_to_image(Image dst, Image src, int x, int y);
-	map(int x, int y);
+		int	load_map_images(void);
+		char **init_map(void);
+		char **map_generate(void);
+		void print_map(void);
+		void border_walls(void);
+		int draw_to_image(Image dst, Image src, int x, int y);
+		Image gen_image(void);
+		map(int x, int y);
 };
 
 class game {
