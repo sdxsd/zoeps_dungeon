@@ -38,36 +38,36 @@ class game;
 
 class Entity {
 	public:
-	Texture2D	tex;
-	char		*name;
-	short		lvl;
-	short		hp;
-	short 		dmg;
-	Entity (void);
-	int entity_load_texture(char *path);
-	int	draw_entity(int x, int y);
+		Texture2D	tex;
+		char		*name;
+		short		lvl;
+		short		hp;
+		short 		dmg;
+		Entity (void);
+		int entity_load_texture(char *path);
+		int	draw_entity(int x, int y);
 };
 
 class Item {
 	private:
-	void	(*effect_Player)(Player *plyr);
-	Texture2D item_texture;
+		void	(*effect_Player)(Player *plyr);
+		Texture2D item_texture;
 	public:
-	char	**description;
-	char	**e_description;
-	char **gen_description(void);
-	Item (void);
+		char	**description;
+		char	**e_description;
+		char **gen_description(void);
+		Item (void);
 };
 
 class Inventory {
 	private:
-	Item	items[6];
-	int		items_count;
+		Item	items[6];
+		int		items_count;
 	public:
-	Inventory (void);
-	void add_item(item to_add);
-	void remove_item(int id);
-	item use_item(int id);
+		Inventory (void);
+		void add_item(item to_add);
+		void remove_item(int id);
+		item use_item(int id);
 };
 
 class Player : Entity {
@@ -94,11 +94,11 @@ class Map {
 
 class Game {
 	public:
-	int	w_height;
-	int	w_width;
-	Map level;
-	// Player plyr;
-	Game(void);
+		int	w_height;
+		int	w_width;
+		Map level;
+		// Player plyr;
+		Game(void);
 };
 
 #endif // CLASSES_H
