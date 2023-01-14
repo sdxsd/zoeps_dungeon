@@ -37,12 +37,15 @@ class Game;
 class Map;
 
 class Entity {
-	public:
+	private:
 		Texture2D	tex;
 		char		*name;
 		short		lvl;
 		short		hp;
 		short 		dmg;
+	public:
+		int			pos_x;
+		int			pos_y;
 		Entity (void);
 		int entity_load_texture(char *path);
 		int	draw_entity(int x, int y);
@@ -50,8 +53,8 @@ class Entity {
 
 class Item {
 	private:
-		void	(*effect_Player)(Player *plyr);
-		Texture2D item_texture;
+		void		(*effect_Player)(Player *plyr);
+		Texture2D	item_texture;
 	public:
 		char	**description;
 		char	**e_description;
@@ -71,7 +74,11 @@ class Inventory {
 };
 
 class Player : Entity {
-	Inventory inv;
+	// private:
+		// Inventory	inv;
+	public:
+		Vector2		pos_vec;
+		Player(Game *game);
 };
 
 class Map {
@@ -94,9 +101,10 @@ class Map {
 
 class Game {
 	public:
-		int	w_height;
-		int	w_width;
-		Map level;
+		Camera2D	plyr_cam;
+		int			w_height;
+		int			w_width;
+		Map			level;
 		// Player plyr;
 		Game(void);
 };

@@ -3,6 +3,7 @@ CFLAGS = -g
 LINKEN = -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
 NAME = zoeps_dungeon
 CFILES = \
+		src/player.cpp \
 		src/entity.cpp \
 		src/split.cpp \
 		src/map.cpp \

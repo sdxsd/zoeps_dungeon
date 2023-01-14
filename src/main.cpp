@@ -36,19 +36,42 @@ Game::Game(void) : level(DEFAULT_MAP_SIZE_X, DEFAULT_MAP_SIZE_Y) {
 	SetTargetFPS(FPS);
 }
 
+void update(Player *player, Camera2D *camera) {
+  float deltaTime = GetFrameTime();
+  const int player_move_speed = 250.0f;
+
+  if (IsKeyDown(KEY_UP))
+	player->pos_vec.y -= deltaTime * player_move_speed;
+  if (IsKeyDown(KEY_DOWN))
+	player->pos_vec.y += deltaTime * player_move_speed;
+  if (IsKeyDown(KEY_LEFT))
+	player->pos_vec.x -= deltaTime * player_move_speed;
+  if (IsKeyDown(KEY_RIGHT))
+	player->pos_vec.x += deltaTime * player_move_speed;
+  camera->target = player->pos_vec;
+}
+
 int main() {
 	Image		map_image;
 	Texture2D	map_tex;
 	Game		reality;
+	Player		plyr(&reality);
 
 	reality.level.print_map();
 	reality.level.load_map_images();
 	map_image = reality.level.gen_image();
 	map_tex = LoadTextureFromImage(map_image);
-	while (!WindowShouldClose())
+	reality.plyr_cam.offset = (Vector2) {(float)reality.w_width/2.0f, (float)reality.w_height/2.0f};
+	reality.plyr_cam.target = plyr.pos_vec;
+	reality.plyr_cam.rotation = 0.0f;
+	reality.plyr_cam.zoom = 1.0f;
+	while (!WindowShouldClose()) // Ran every frame.
 	{
 		BeginDrawing();
+		BeginMode2D(reality.plyr_cam);
 		DrawTexture(map_tex, 0, 0, WHITE);
+		update(&plyr, &reality.plyr_cam);
+		EndMode2D();
 		EndDrawing();
 	}
 	return (0);
