@@ -1,6 +1,7 @@
 CC = gcc
-CFLAGS = -g -lraylib
-NAME = dungeons_of_wajoo
+CFLAGS = -g
+LINKEN = -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
+NAME = zoeps_dungeon
 CFILES = \
 		src/files.cpp \
 		src/entity.cpp \
@@ -25,7 +26,7 @@ clean:
 	rm -f $(NAME)
 
 fclean: clean
-	@rm -rfv system-killer.dSYM
+	@rm -rfv zoeps_dungeon.dSYM
 	@rm -rfv $(OFILES)
 
 .PHONY: all clean fclean re
