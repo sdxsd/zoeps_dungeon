@@ -35,9 +35,12 @@ entity::entity(void) {
 
 int entity::entity_load_texture(char *path) {
 	Image img = LoadImage(path);
-	if (!img.data) return (FALSE);
+
+	if (!img.data)
+		return (FALSE);
 	ImageResize(&img, TEX_SIZE, TEX_SIZE);
 	tex = LoadTextureFromImage(img);
-	if (!tex.mipmaps) return (FALSE);
+	if (!tex.mipmaps)
+		return (FALSE);
 	return (TRUE);
 }

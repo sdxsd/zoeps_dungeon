@@ -32,7 +32,7 @@ A program is free software if users have all of these freedoms.
 #include <time.h>
 #include "../includes/main.hpp"
 
-int map::draw_to_image(Image dst, Image src, int x, int y) {
+int Map::draw_to_image(Image dst, Image src, int x, int y) {
 	Rectangle	dst_rec;
 	Rectangle	src_rec;
 
@@ -48,7 +48,7 @@ int map::draw_to_image(Image dst, Image src, int x, int y) {
 	return (TRUE);
 }
 
-Image map::gen_image(void) {
+Image Map::gen_image(void) {
 	Image	img;
 
 	img = GenImageColor(WIN_X, WIN_Y, WHITE);
@@ -63,7 +63,7 @@ Image map::gen_image(void) {
 	return (img);
 }
 
-int	map::load_map_images(void) {
+int	Map::load_map_images(void) {
 	img_wall = LoadImage("assets/wll.png");
 	img_floor = LoadImage("assets/flr.png");
 	ImageResize(&img_wall, TEX_SIZE, TEX_SIZE);
@@ -87,7 +87,7 @@ int	get_seed(void) {
 	return (ret);
 }
 
-void map::border_walls(void) {
+void Map::border_walls(void) {
 	int	iterator_y = 0;
 	int	iterator_x = 0;
 
@@ -102,14 +102,14 @@ void map::border_walls(void) {
 	}
 }
 
-map::map(int x, int y) {
+Map::Map(int x, int y) {
 	width = x;
 	height = y;
 	map_data = init_map();
 	map_generate();
 }
 
-char **map::init_map(void) {
+char **Map::init_map(void) {
 	char	**map;
 
 	map = (char**)calloc(sizeof(char*), height);
@@ -123,14 +123,14 @@ char **map::init_map(void) {
 	return (map);
 }
 
-void map::print_map(void) {
+void Map::print_map(void) {
 	for (int i = 0; i < height; i++)
 		printf("%s\n", map_data[i]);
 }
 
 // Clean this up later...
 // This is embarassing.
-char **map::map_generate(void) {
+char **Map::map_generate(void) {
 	int	g_tunnels = 0;
 	int	start_x, start_y, x, y;
 	int	length, direction, last_direction;

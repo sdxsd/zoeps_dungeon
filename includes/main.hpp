@@ -32,8 +32,4 @@ A program is free software if users have all of these freedoms.
 /* UTIL FUNCTIONS */
 char **split(char const *s, char c);
 
-/* FILE FUNCTIONS */
-char **level_array();
-char **file_name_array(char *dir_name);
-
 #endif // MAIN_HPP

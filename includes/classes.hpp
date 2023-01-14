@@ -29,52 +29,52 @@ A program is free software if users have all of these freedoms.
 # include "defines.hpp"
 # include <raylib.h>
 
-class player;
-class entity;
+class Player;
+class Entity;
 class item;
 class inventory;
-class map;
+class Map;
 class game;
 
-class entity {
+class Entity {
 	public:
 	Texture2D	tex;
 	char		*name;
 	short		lvl;
 	short		hp;
 	short 		dmg;
-	entity (void);
+	Entity (void);
 	int entity_load_texture(char *path);
 	int	draw_entity(int x, int y);
 };
 
-class item {
+class Item {
 	private:
-	void	(*effect_player)(player *plyr);
+	void	(*effect_Player)(Player *plyr);
 	Texture2D item_texture;
 	public:
 	char	**description;
 	char	**e_description;
 	char **gen_description(void);
-	item (void);
+	Item (void);
 };
 
-class inventory {
+class Inventory {
 	private:
-	item	items[6];
+	Item	items[6];
 	int		items_count;
 	public:
-	inventory (void);
+	Inventory (void);
 	void add_item(item to_add);
 	void remove_item(int id);
 	item use_item(int id);
 };
 
-class player : entity {
-	inventory inv;
+class Player : Entity {
+	Inventory inv;
 };
 
-class map {
+class Map {
 	private:
 		char	**map_data;
 		int		height;
@@ -89,16 +89,16 @@ class map {
 		void border_walls(void);
 		int draw_to_image(Image dst, Image src, int x, int y);
 		Image gen_image(void);
-		map(int x, int y);
+		Map(int x, int y);
 };
 
-class game {
+class Game {
 	public:
 	int	w_height;
 	int	w_width;
-	map level;
-	// player plyr;
-	game(void);
+	Map level;
+	// Player plyr;
+	Game(void);
 };
 
 #endif // CLASSES_H

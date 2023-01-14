@@ -29,7 +29,7 @@ A program is free software if users have all of these freedoms.
 #include <stdio.h>
 #include "../includes/main.hpp"
 
-game::game(void) : level(DEFAULT_MAP_SIZE_X, DEFAULT_MAP_SIZE_Y) {
+Game::Game(void) : level(DEFAULT_MAP_SIZE_X, DEFAULT_MAP_SIZE_Y) {
 	w_width = WIN_X;
 	w_height = WIN_Y;
 	InitWindow(w_width, w_height, WINDOW_TITLE);
@@ -37,7 +37,7 @@ game::game(void) : level(DEFAULT_MAP_SIZE_X, DEFAULT_MAP_SIZE_Y) {
 }
 
 int main() {
-	game reality;
+	Game reality;
 
 	reality.level.print_map();
 	reality.level.load_map_images();
