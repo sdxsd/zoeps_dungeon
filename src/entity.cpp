@@ -26,14 +26,14 @@ A program is free software if users have all of these freedoms.
 
 #include "../includes/main.hpp"
 
-entity::entity(void) {
+Entity::Entity(void) {
 	name = (char*)"Jonkadingo";
 	lvl = 0;
 	hp = 0;
 	dmg = 0;
 }
 
-int entity::entity_load_texture(char *path) {
+int Entity::entity_load_texture(char *path) {
 	Image img = LoadImage(path);
 
 	if (!img.data)

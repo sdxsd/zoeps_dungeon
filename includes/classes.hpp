@@ -29,12 +29,12 @@ A program is free software if users have all of these freedoms.
 # include "defines.hpp"
 # include <raylib.h>
 
+class Inventory;
 class Player;
 class Entity;
-class item;
-class inventory;
+class Item;
+class Game;
 class Map;
-class game;
 
 class Entity {
 	public:
@@ -65,9 +65,9 @@ class Inventory {
 		int		items_count;
 	public:
 		Inventory (void);
-		void add_item(item to_add);
+		void add_item(Item to_add);
 		void remove_item(int id);
-		item use_item(int id);
+		Item use_item(int id);
 };
 
 class Player : Entity {
