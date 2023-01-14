@@ -30,9 +30,9 @@ A program is free software if users have all of these freedoms.
 #include "../includes/main.hpp"
 
 game::game(void) : level(DEFAULT_MAP_SIZE_X, DEFAULT_MAP_SIZE_Y) {
-	s_width = WIN_X;
-	s_height = WIN_Y;
-	InitWindow(s_width, s_height, WINDOW_TITLE);
+	w_width = WIN_X;
+	w_height = WIN_Y;
+	InitWindow(w_width, w_height, WINDOW_TITLE);
 	SetTargetFPS(FPS);
 }
 

@@ -7,7 +7,6 @@ CFILES = \
 		src/entity.cpp \
 		src/split.cpp \
 		src/map.cpp \
-		src/render.cpp \
 		src/main.cpp
 OFILES = $(CFILES:.cpp=.o)
 

@@ -32,7 +32,7 @@ A program is free software if users have all of these freedoms.
 #include <time.h>
 #include "../includes/main.hpp"
 
-int draw_to_image(Image dst, Image src, int x, int y) {
+int map::draw_to_image(Image dst, Image src, int x, int y) {
 	Rectangle	dst_rec;
 	Rectangle	src_rec;
 

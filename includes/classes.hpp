@@ -74,19 +74,6 @@ class player : entity {
 	inventory inv;
 };
 
-class renderer {
-	private:
-	Texture2D	frame;
-	public:
-	int			camera_pos_x, camera_pos_y, render_distance;
-	bool		changed;
-	void set_changed(void);
-	int set_render_pos(int x, int y, map *map);
-	int	render(map *map);
-	Image gen_image(map *map, int width, int height);
-	renderer(void);
-};
-
 class map {
 	private:
 		char	**map_data;
@@ -107,10 +94,9 @@ class map {
 
 class game {
 	public:
-	int	s_height;
-	int	s_width;
+	int	w_height;
+	int	w_width;
 	map level;
-	renderer camera;
 	// player plyr;
 	game(void);
 };
