@@ -37,8 +37,18 @@ Game::Game(void) : level(DEFAULT_MAP_SIZE_X, DEFAULT_MAP_SIZE_Y) {
 }
 
 int main() {
-	Game reality;
+	Image		map_image;
+	Texture2D	map_tex;
+	Game		reality;
 
 	reality.level.print_map();
 	reality.level.load_map_images();
+	map_image = reality.level.gen_image();
+	map_tex = LoadTextureFromImage(map_image);
+	while (!WindowShouldClose())
+	{
+		BeginDrawing();
+		DrawTexture(map_tex, 0, 0, WHITE);
+	}
+	return (0);
 }

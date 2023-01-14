@@ -35,8 +35,8 @@ A program is free software if users have all of these freedoms.
 Map::Map(int x, int y) {
 	width = x;
 	height = y;
-	map_data = (char**)calloc(sizeof(char*), height);
 
+	map_data = (char**)calloc(sizeof(char*), height);
 	if (!map_data)
 		throw printf("Malloc failure\n");
 	for (int i = 0; i <= height; i++)
@@ -78,12 +78,14 @@ Image Map::gen_image(void) {
 	img = GenImageColor(WIN_X, WIN_Y, WHITE);
 	for (int y = 0; y < height; y++) {
 		for (int x = 0; x < width; x++) {
-			if (map_data[y + height][x + width] == '.')
+			if (map_data[y][x] == '.')
 				draw_to_image(img, img_floor, x * TEX_SIZE,  y * TEX_SIZE);
-			else if (map_data[y + height][x + width] == '#')
+			else if (map_data[y][x] == '#')
 				draw_to_image(img, img_wall, x * TEX_SIZE, y * TEX_SIZE);
 		}
 	}
+	printf("MAP_IMAGE_HEIGHT: %d\n", img.height);
+	printf("MAP_IMAGE_WIDTH: %d\n", img.width);
 	return (img);
 }
 
