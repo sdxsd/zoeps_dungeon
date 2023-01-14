@@ -49,6 +49,7 @@ int main() {
 	{
 		BeginDrawing();
 		DrawTexture(map_tex, 0, 0, WHITE);
+		EndDrawing();
 	}
 	return (0);
 }

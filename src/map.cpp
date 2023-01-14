@@ -76,8 +76,8 @@ Image Map::gen_image(void) {
 	Image	img;
 
 	img = GenImageColor(WIN_X, WIN_Y, WHITE);
-	for (int y = 0; y < height; y++) {
-		for (int x = 0; x < width; x++) {
+	for (int y = 0; y <= height; y++) {
+		for (int x = 0; x <= width; x++) {
 			if (map_data[y][x] == '.')
 				draw_to_image(img, img_floor, x * TEX_SIZE,  y * TEX_SIZE);
 			else if (map_data[y][x] == '#')
