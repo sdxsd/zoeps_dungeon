@@ -1,4 +1,4 @@
-CC = gcc
+CC = g++
 CFLAGS = -g
 LINKEN = -lraylib -lGL -lm -lpthread -ldl -lrt -lX11
 NAME = zoeps_dungeon

@@ -83,13 +83,13 @@ class Map {
 		Image	img_wall;
 	public:
 		int	load_map_images(void);
-		char **init_map(void);
 		char **map_generate(void);
 		void print_map(void);
 		void border_walls(void);
 		int draw_to_image(Image dst, Image src, int x, int y);
 		Image gen_image(void);
 		Map(int x, int y);
+		~Map(void);
 };
 
 class Game {

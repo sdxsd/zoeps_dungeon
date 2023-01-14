@@ -32,6 +32,30 @@ A program is free software if users have all of these freedoms.
 #include <time.h>
 #include "../includes/main.hpp"
 
+Map::Map(int x, int y) {
+	width = x;
+	height = y;
+	map_data = (char**)calloc(sizeof(char*), height);
+
+	if (!map_data)
+		throw printf("Malloc failure\n");
+	for (int i = 0; i <= height; i++)
+		if (!(map_data[i] = (char*)calloc(sizeof(char), width)))
+			throw printf("Malloc failure\n");
+	for (int i = 0; i <= height; i++)
+		for (int z = 0; z <= width; z++)
+			map_data[i][z] = '#';
+	map_generate();
+}
+
+Map::~Map(void) {
+	for (int i = 0; i < height; i++)
+		free(map_data[i]);
+	UnloadImage(img_floor);
+	UnloadImage(img_wall);
+	printf("Map freed\n");
+}
+
 int Map::draw_to_image(Image dst, Image src, int x, int y) {
 	Rectangle	dst_rec;
 	Rectangle	src_rec;
@@ -102,34 +126,11 @@ void Map::border_walls(void) {
 	}
 }
 
-Map::Map(int x, int y) {
-	width = x;
-	height = y;
-	map_data = init_map();
-	map_generate();
-}
-
-char **Map::init_map(void) {
-	char	**map;
-
-	map = (char**)calloc(sizeof(char*), height);
-	if (!map) return (NULL);
-	for (int i = 0; i <= height; i++)
-		if (!(map[i] = (char*)calloc(sizeof(char), width)))
-			return (NULL);
-	for (int i = 0; i <= height; i++)
-		for (int z = 0; z <= width; z++)
-			map[i][z] = '#';
-	return (map);
-}
-
 void Map::print_map(void) {
 	for (int i = 0; i < height; i++)
 		printf("%s\n", map_data[i]);
 }
 
-// Clean this up later...
-// This is embarassing.
 char **Map::map_generate(void) {
 	int	g_tunnels = 0;
 	int	start_x, start_y, x, y;
