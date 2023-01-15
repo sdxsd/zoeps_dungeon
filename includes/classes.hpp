@@ -78,6 +78,7 @@ class Player : Entity {
 		// Inventory	inv;
 	public:
 		Vector2		pos_vec;
+
 		Player(Game *game);
 };
 
@@ -89,23 +90,25 @@ class Map {
 		Image	img_floor;
 		Image	img_wall;
 	public:
-		int	load_map_images(void);
-		char **map_generate(void);
-		void print_map(void);
-		void border_walls(void);
-		int draw_to_image(Image dst, Image src, int x, int y);
-		Image gen_image(void);
+		int		load_map_images(void);
+		char	**map_generate(void);
+		void	print_map(void);
+		void	border_walls(void);
+		int		draw_to_image(Image dst, Image src, int x, int y);
+		Image	gen_image(void);
 		Map(int x, int y);
 		~Map(void);
 };
 
 class Game {
 	public:
+		Texture2D	lvl_texture;
 		Camera2D	plyr_cam;
+		Player		*player;
 		int			w_height;
 		int			w_width;
 		Map			level;
-		// Player plyr;
+
 		Game(void);
 };
 
