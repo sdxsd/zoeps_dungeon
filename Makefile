@@ -27,11 +27,11 @@ $(LIBVECTOR):
 re: fclean all
 
 clean:
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 fclean: clean
 	make -C libvector/ fclean
-	@rm -rfv zoeps_dungeon.dSYM
-	@rm -rfv $(OFILES)
+	@rm -rf zoeps_dungeon.dSYM
+	@rm -rf $(OFILES)
 
 .PHONY: all clean fclean re

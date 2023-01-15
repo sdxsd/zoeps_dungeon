@@ -29,6 +29,11 @@ A program is free software if users have all of these freedoms.
 # include "defines.hpp"
 # include "classes.hpp"
 
+typedef enum e_asset_types {
+	TYPE_FLOOR,
+	TYPE_WALL,
+} t_asset_types;
+
 /* UTIL FUNCTIONS */
 char	**split(char const *s, char c);
 void	update(Player *player, Camera2D *camera);

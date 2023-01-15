@@ -29,23 +29,26 @@ A program is free software if users have all of these freedoms.
 #include <stdio.h>
 #include "../includes/main.hpp"
 
-Game::Game(void) : level(DEFAULT_MAP_SIZE_X, DEFAULT_MAP_SIZE_Y) {
+Game::~Game(void) {
+	delete level;
+	CloseWindow();
+}
+
+Game::Game(void) {
 	w_width = WIN_X;
 	w_height = WIN_Y;
 	InitWindow(w_width, w_height, WINDOW_TITLE);
 	SetTargetFPS(FPS);
+	level = new Map(MAP_SIZE_X, MAP_SIZE_Y);
+	*lvl_image = level->gen_image();
 }
 
 int main() {
-	Image		map_image;
-	Texture2D	map_tex;
 	Game		reality;
 	Player		plyr(&reality);
 
-	reality.level.print_map();
-	reality.level.load_map_images();
-	map_image = reality.level.gen_image();
-	map_tex = LoadTextureFromImage(map_image);
+	*reality.lvl_image = reality.level->gen_image();
+	reality.lvl_texture = LoadTextureFromImage(*reality.lvl_image);
 	reality.plyr_cam.offset = (Vector2) {(float)reality.w_width/2.0f, (float)reality.w_height/2.0f};
 	reality.plyr_cam.target = plyr.pos_vec;
 	reality.plyr_cam.rotation = 0.0f;
@@ -54,7 +57,7 @@ int main() {
 	{
 		BeginDrawing();
 		BeginMode2D(reality.plyr_cam);
-		DrawTexture(map_tex, 0, 0, WHITE);
+		DrawTexture(reality.lvl_texture, 0, 0, WHITE);
 		update(&plyr, &reality.plyr_cam);
 		EndMode2D();
 		EndDrawing();

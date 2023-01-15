@@ -46,6 +46,7 @@ class Entity {
 	public:
 		int			pos_x;
 		int			pos_y;
+
 		Entity (void);
 		int entity_load_texture(char *path);
 		int	draw_entity(int x, int y);
@@ -58,6 +59,7 @@ class Item {
 	public:
 		char	**description;
 		char	**e_description;
+
 		char **gen_description(void);
 		Item (void);
 };
@@ -90,7 +92,6 @@ class Map {
 		Image	img_floor;
 		Image	img_wall;
 	public:
-		int		load_map_images(void);
 		char	**map_generate(void);
 		void	print_map(void);
 		void	border_walls(void);
@@ -104,12 +105,14 @@ class Game {
 	public:
 		Texture2D	lvl_texture;
 		Camera2D	plyr_cam;
+		Image		*lvl_image;
 		Player		*player;
 		int			w_height;
 		int			w_width;
-		Map			level;
+		Map			*level;
 
 		Game(void);
+		~Game(void);
 };
 
 #endif // CLASSES_H

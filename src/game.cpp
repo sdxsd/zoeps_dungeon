@@ -24,33 +24,4 @@ The definition of Free Software is as follows:
 A program is free software if users have all of these freedoms.
 */
 
-/* Defines a number of useful constants. */
-
-#ifndef DEFINES_H
-# define DEFINES_H
-
-# define TRUE 1
-# define FALSE 0
-# define FILE_LIMIT 128
-
-// PLAYER DEFAULTS
-# define INV_SIZE 6;
-# define DEFAULT_HP 25;
-# define DEFAULT_DMG 5;
-
-// TEXTURE DEFAULTS
-# define TEX_SIZE 64
-
-// WINDOW DEFAULTS
-# define WIN_X 576
-# define WIN_Y 576
-# define WINDOW_TITLE "Zoeps's Dungeon"
-# define FPS 60
-
-// MAP GEN DEFAULTS
-# define MAP_SIZE_X 30
-# define MAP_SIZE_Y 30
-# define MAX_TUNNELS 80
-# define TUNNEL_LENGTH 8
-
-#endif
+#include "../includes/main.hpp"

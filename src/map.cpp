@@ -45,6 +45,10 @@ Map::Map(int x, int y) {
 	for (int i = 0; i <= height; i++)
 		for (int z = 0; z <= width; z++)
 			map_data[i][z] = '#';
+	img_wall = LoadImage("assets/wll.png");
+	img_floor = LoadImage("assets/flr.png");
+	ImageResize(&img_wall, TEX_SIZE, TEX_SIZE);
+	ImageResize(&img_floor, TEX_SIZE, TEX_SIZE);
 	map_generate();
 }
 
@@ -87,14 +91,6 @@ Image Map::gen_image(void) {
 	printf("MAP_IMAGE_HEIGHT: %d\n", img.height);
 	printf("MAP_IMAGE_WIDTH: %d\n", img.width);
 	return (img);
-}
-
-int	Map::load_map_images(void) {
-	img_wall = LoadImage("assets/wll.png");
-	img_floor = LoadImage("assets/flr.png");
-	ImageResize(&img_wall, TEX_SIZE, TEX_SIZE);
-	ImageResize(&img_floor, TEX_SIZE, TEX_SIZE);
-	return (TRUE);
 }
 
 int	get_seed(void) {
