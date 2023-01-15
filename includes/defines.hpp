@@ -53,4 +53,8 @@ A program is free software if users have all of these freedoms.
 # define MAX_TUNNELS 80
 # define TUNNEL_LENGTH 8
 
+// ASSET LOCATIONS
+# define WALL_ASSET_PATH "./assets/walls/"
+# define FLOOR_ASSET_PATH "./assets/floors/"
+
 #endif

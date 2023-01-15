@@ -29,8 +29,33 @@ A program is free software if users have all of these freedoms.
 #include <stdio.h>
 #include <fcntl.h>
 #include <unistd.h>
+#include <dirent.h>
+#include <vector>
 #include <time.h>
 #include "../includes/main.hpp"
+
+
+int	Map::generate_style(void) {
+	std::vector<struct dirent *>	asset_files;
+	struct dirent					*direc_entry;
+	DIR								*direc_pointer;
+	int								file_c;
+
+	direc_pointer = opendir(FLOOR_ASSET_PATH);
+	if (!direc_pointer)
+		return (FALSE);
+	while (TRUE) {
+		direc_entry = readdir(direc_pointer);
+		if (direc_entry) {
+			file_c++;
+			asset_files.push_back(direc_entry);
+		}
+		else
+			break;
+	}
+	closedir(direc_pointer);
+	return (TRUE);
+}
 
 Map::Map(int x, int y) {
 	width = x;
@@ -47,8 +72,6 @@ Map::Map(int x, int y) {
 			map_data[i][z] = '#';
 	img_wall = LoadImage("assets/wll.png");
 	img_floor = LoadImage("assets/flr.png");
-	ImageResize(&img_wall, TEX_SIZE, TEX_SIZE);
-	ImageResize(&img_floor, TEX_SIZE, TEX_SIZE);
 	map_generate();
 }
 
@@ -88,8 +111,6 @@ Image Map::gen_image(void) {
 				draw_to_image(img, img_wall, x * TEX_SIZE, y * TEX_SIZE);
 		}
 	}
-	printf("MAP_IMAGE_HEIGHT: %d\n", img.height);
-	printf("MAP_IMAGE_WIDTH: %d\n", img.width);
 	return (img);
 }
 

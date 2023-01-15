@@ -97,6 +97,7 @@ class Map {
 		void	border_walls(void);
 		int		draw_to_image(Image dst, Image src, int x, int y);
 		Image	gen_image(void);
+		int		generate_style(void);
 		Map(int x, int y);
 		~Map(void);
 };
