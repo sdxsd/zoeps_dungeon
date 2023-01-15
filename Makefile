@@ -30,6 +30,7 @@ clean:
 	rm -f $(NAME)
 
 fclean: clean
+	make -C libvector/ fclean
 	@rm -rfv zoeps_dungeon.dSYM
 	@rm -rfv $(OFILES)
 
