@@ -28,6 +28,7 @@ A program is free software if users have all of these freedoms.
 
 void update(Player *player, Camera2D *camera) {
   float deltaTime = GetFrameTime();
+  const int player_move_speed = 250.0f;
 
   if (IsKeyDown(KEY_UP))
 	player->pos_vec.y -= deltaTime * player_move_speed;
@@ -37,6 +38,9 @@ void update(Player *player, Camera2D *camera) {
 	player->pos_vec.x -= deltaTime * player_move_speed;
   if (IsKeyDown(KEY_RIGHT))
 	player->pos_vec.x += deltaTime * player_move_speed;
-
+  if (IsKeyDown(KEY_A))
+	  camera->zoom += deltaTime * 1.0f;
+  if (IsKeyDown(KEY_D))
+	  camera->zoom -= deltaTime * 1.0f;
   camera->target = player->pos_vec;
 }

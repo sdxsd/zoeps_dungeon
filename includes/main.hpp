@@ -30,6 +30,7 @@ A program is free software if users have all of these freedoms.
 # include "classes.hpp"
 
 /* UTIL FUNCTIONS */
-char **split(char const *s, char c);
+char	**split(char const *s, char c);
+void	update(Player *player, Camera2D *camera);
 
 #endif // MAIN_HPP
