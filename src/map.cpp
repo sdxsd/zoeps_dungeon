@@ -75,7 +75,7 @@ int Map::draw_to_image(Image dst, Image src, int x, int y) {
 Image Map::gen_image(void) {
 	Image	img;
 
-	img = GenImageColor(WIN_X, WIN_Y, WHITE);
+	img = GenImageColor(width * TEX_SIZE, height * TEX_SIZE, WHITE);
 	for (int y = 0; y <= height; y++) {
 		for (int x = 0; x <= width; x++) {
 			if (map_data[y][x] == '.')

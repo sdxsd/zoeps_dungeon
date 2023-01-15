@@ -47,12 +47,9 @@ A program is free software if users have all of these freedoms.
 # define WINDOW_TITLE "Zoeps's Dungeon"
 # define FPS 60
 
-// RENDERER DEFAULTS
-# define RENDER_DISTANCE 9;
-
 // MAP GEN DEFAULTS
-# define DEFAULT_MAP_SIZE_X 8
-# define DEFAULT_MAP_SIZE_Y 9
+# define DEFAULT_MAP_SIZE_X 30
+# define DEFAULT_MAP_SIZE_Y 30
 # define MAX_TUNNELS 80
 # define TUNNEL_LENGTH 8
 

@@ -48,6 +48,10 @@ void update(Player *player, Camera2D *camera) {
 	player->pos_vec.x -= deltaTime * player_move_speed;
   if (IsKeyDown(KEY_RIGHT))
 	player->pos_vec.x += deltaTime * player_move_speed;
+  if (IsKeyDown(KEY_A))
+	  camera->zoom += deltaTime * 1.0f;
+  if (IsKeyDown(KEY_D))
+	  camera->zoom -= deltaTime * 1.0f;
   camera->target = player->pos_vec;
 }
 
