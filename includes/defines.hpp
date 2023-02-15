@@ -42,16 +42,16 @@ A program is free software if users have all of these freedoms.
 # define TEX_SIZE 64
 
 // WINDOW DEFAULTS
-# define WIN_X 576
-# define WIN_Y 576
+# define WIN_X 1152
+# define WIN_Y 1152
 # define WINDOW_TITLE "Zoeps's Dungeon"
 # define FPS 60
 
 // MAP GEN DEFAULTS
-# define MAP_SIZE_X 30
-# define MAP_SIZE_Y 30
-# define MAX_TUNNELS 80
-# define TUNNEL_LENGTH 8
+# define MAP_SIZE_X 10
+# define MAP_SIZE_Y 10
+# define MAX_TUNNELS 365
+# define TUNNEL_LENGTH 16
 
 // ASSET LOCATIONS
 # define WALL_ASSET_PATH "./assets/walls/"
